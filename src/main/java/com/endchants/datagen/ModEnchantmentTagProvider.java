@@ -20,5 +20,6 @@ public class ModEnchantmentTagProvider extends FabricTagProvider<Enchantment> {
     @Override
     protected void addTags(HolderLookup.Provider wrapperLookup) {
         builder(EnchantmentTags.NON_TREASURE).add(ModEnchantments.FLESH_EATER);
+        builder(EnchantmentTags.ARMOR_EXCLUSIVE).add(ModEnchantments.REPELLING);
     }
 }

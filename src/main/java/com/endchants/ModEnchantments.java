@@ -1,6 +1,7 @@
 package com.endchants;
 
 import com.endchants.enchantment.effect.FleshEaterEffect;
+import com.endchants.enchantment.effect.RepellingEffect;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -24,6 +25,8 @@ public class ModEnchantments {
 
         public static ResourceKey<Enchantment> FLESH_EATER = ResourceKey.create(Registries.ENCHANTMENT,
                         IdGen.id("flesh_eater"));
+        public static ResourceKey<Enchantment> REPELLING = ResourceKey.create(Registries.ENCHANTMENT,
+                        IdGen.id("repelling"));
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, ModEnchantments.FLESH_EATER,
@@ -42,5 +45,21 @@ public class ModEnchantments {
                                                                 EnchantmentTarget.ATTACKER,
                                                                 EnchantmentTarget.ATTACKER,
                                                                 new FleshEaterEffect(LevelBasedValue.perLevel(1, 2))));
+                register(ctx, ModEnchantments.REPELLING,
+                                Enchantment.enchantment(
+                                                Enchantment.definition(
+                                                                ctx.lookup(Registries.ITEM)
+                                                                                .getOrThrow(ItemTags.ARMOR_ENCHANTABLE),
+                                                                10,
+                                                                2,
+                                                                Enchantment.dynamicCost(6, 8),
+                                                                Enchantment.dynamicCost(8, 8),
+                                                                8,
+                                                                EquipmentSlotGroup.ARMOR))
+                                                .withEffect(
+                                                                EnchantmentEffectComponents.POST_ATTACK,
+                                                                EnchantmentTarget.VICTIM,
+                                                                EnchantmentTarget.ATTACKER,
+                                                                new RepellingEffect(0.2f)));
         }
 }
