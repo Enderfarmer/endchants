@@ -43,7 +43,7 @@ public class ModEnchantments {
                                                 .withEffect(
                                                                 EnchantmentEffectComponents.POST_ATTACK,
                                                                 EnchantmentTarget.ATTACKER,
-                                                                EnchantmentTarget.ATTACKER,
+                                                                EnchantmentTarget.VICTIM,
                                                                 new FleshEaterEffect(LevelBasedValue.perLevel(1, 2))));
                 register(ctx, ModEnchantments.REPELLING,
                                 Enchantment.enchantment(
