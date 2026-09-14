@@ -1,6 +1,7 @@
 package com.endchants;
 
 import com.endchants.enchantment.effect.FleshEaterEffect;
+import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
 
 import net.minecraft.core.registries.Registries;
@@ -24,12 +25,14 @@ public class ModEnchantments {
         }
 
         public static ResourceKey<Enchantment> FLESH_EATER = ResourceKey.create(Registries.ENCHANTMENT,
-                        IdGen.id("flesh_eater"));
+                        Endchants.id("flesh_eater"));
         public static ResourceKey<Enchantment> REPELLING = ResourceKey.create(Registries.ENCHANTMENT,
-                        IdGen.id("repelling"));
+                        Endchants.id("repelling"));
+        public static ResourceKey<Enchantment> RADIANCE = ResourceKey.create(Registries.ENCHANTMENT,
+                        Endchants.id("radiance"));
 
         public static void init(BootstrapContext<Enchantment> ctx) {
-                register(ctx, ModEnchantments.FLESH_EATER,
+                register(ctx, FLESH_EATER,
                                 Enchantment.enchantment(
                                                 Enchantment.definition(
                                                                 ctx.lookup(Registries.ITEM)
@@ -45,7 +48,7 @@ public class ModEnchantments {
                                                                 EnchantmentTarget.ATTACKER,
                                                                 EnchantmentTarget.VICTIM,
                                                                 new FleshEaterEffect(LevelBasedValue.perLevel(1, 2))));
-                register(ctx, ModEnchantments.REPELLING,
+                register(ctx, REPELLING,
                                 Enchantment.enchantment(
                                                 Enchantment.definition(
                                                                 ctx.lookup(Registries.ITEM)
@@ -61,5 +64,21 @@ public class ModEnchantments {
                                                                 EnchantmentTarget.VICTIM,
                                                                 EnchantmentTarget.ATTACKER,
                                                                 new RepellingEffect(0.2f)));
+                register(ctx, RADIANCE, Enchantment.enchantment(
+                                Enchantment.definition(
+                                                ctx.lookup(Registries.ITEM)
+                                                                .getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                                6,
+                                                2,
+                                                Enchantment.dynamicCost(8, 8),
+                                                Enchantment.dynamicCost(28,
+                                                                8),
+                                                8,
+                                                EquipmentSlotGroup.HAND))
+                                .withEffect(
+                                                EnchantmentEffectComponents.POST_ATTACK,
+                                                EnchantmentTarget.ATTACKER,
+                                                EnchantmentTarget.VICTIM,
+                                                new RadianceEffect(1)));
         }
 }

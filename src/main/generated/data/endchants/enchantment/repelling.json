@@ -9,7 +9,7 @@
         "affected": "attacker",
         "effect": {
           "type": "endchants:repelling_effect",
-          "repelling_strength": 0.5
+          "repelling_strength": 0.2
         },
         "enchanted": "victim"
       }

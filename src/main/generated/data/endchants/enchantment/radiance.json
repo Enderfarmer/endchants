@@ -1,36 +1,32 @@
 {
-  "anvil_cost": 5,
+  "anvil_cost": 8,
   "description": {
-    "translate": "enchantment.endchants.flesh_eater"
+    "translate": "enchantment.endchants.radiance"
   },
   "effects": {
     "minecraft:post_attack": [
       {
         "affected": "victim",
         "effect": {
-          "type": "endchants:flesh_eater_effect",
-          "amount": {
-            "type": "minecraft:linear",
-            "base": 1.0,
-            "per_level_above_first": 2.0
-          }
+          "type": "endchants:radiance_effect",
+          "levelCoef": 1
         },
         "enchanted": "attacker"
       }
     ]
   },
   "max_cost": {
-    "base": 8,
+    "base": 28,
     "per_level_above_first": 8
   },
-  "max_level": 3,
+  "max_level": 2,
   "min_cost": {
-    "base": 6,
+    "base": 8,
     "per_level_above_first": 8
   },
   "slots": [
     "hand"
   ],
   "supported_items": "#minecraft:enchantable/weapon",
-  "weight": 10
+  "weight": 6
 }
