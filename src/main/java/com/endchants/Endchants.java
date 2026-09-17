@@ -23,6 +23,7 @@ public class Endchants implements ModInitializer {
 
 		ModEnchantmentEffects.registerModEnchantmentEffects();
 		ModEffects.registerEffects();
+		ModSubPredicates.register();
 	}
 
 	public static Identifier id(String path) {
