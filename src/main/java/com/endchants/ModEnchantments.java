@@ -1,12 +1,15 @@
 package com.endchants;
 
+import com.endchants.enchantment.effect.BuffOnKillEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -28,14 +31,15 @@ public class ModEnchantments {
                 return enchant;
         }
 
-        public static ResourceKey<Enchantment> FLESH_EATER = ResourceKey.create(Registries.ENCHANTMENT,
-                        Endchants.id("flesh_eater"));
-        public static ResourceKey<Enchantment> REPELLING = ResourceKey.create(Registries.ENCHANTMENT,
-                        Endchants.id("repelling"));
-        public static ResourceKey<Enchantment> RADIANCE = ResourceKey.create(Registries.ENCHANTMENT,
-                        Endchants.id("radiance"));
-        public static ResourceKey<Enchantment> COMMITTED = ResourceKey.create(Registries.ENCHANTMENT,
-                        Endchants.id("committed"));
+        public static ResourceKey<Enchantment> genKey(String name) {
+                return ResourceKey.create(Registries.ENCHANTMENT, Endchants.id(name));
+        }
+
+        public static ResourceKey<Enchantment> FLESH_EATER = genKey("flesh_eater");
+        public static ResourceKey<Enchantment> REPELLING = genKey("repelling");
+        public static ResourceKey<Enchantment> RADIANCE = genKey("radiance");
+        public static ResourceKey<Enchantment> COMMITTED = genKey("committed");
+        public static ResourceKey<Enchantment> GUARDING_STRIKE = genKey("guarding_strike");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -111,5 +115,26 @@ public class ModEnchantments {
                                                                                                                      // custom
                                                                                                                      // predicate
                                                 )));
+                register(ctx, GUARDING_STRIKE, Enchantment.enchantment(
+                                Enchantment.definition(
+                                                ctx.lookup(Registries.ITEM)
+                                                                .getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                                6,
+                                                3,
+                                                Enchantment.dynamicCost(8, 8),
+                                                Enchantment.dynamicCost(28,
+                                                                8),
+                                                8,
+                                                EquipmentSlotGroup.HAND))
+                                .withEffect(
+                                                EnchantmentEffectComponents.POST_ATTACK,
+                                                EnchantmentTarget.ATTACKER,
+                                                EnchantmentTarget.VICTIM,
+                                                new BuffOnKillEffect(LevelBasedValue.perLevel(2, 0),
+                                                                LevelBasedValue.perLevel(2, 2),
+                                                                BuiltInRegistries.MOB_EFFECT.get(Identifier
+                                                                                .withDefaultNamespace("resistance"))
+                                                                                .get(),
+                                                                .2f)));
         }
 }
