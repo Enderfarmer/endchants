@@ -16,30 +16,34 @@ import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.phys.Vec3;
 
 public record BuffOnKillEffect(LevelBasedValue amplifier, LevelBasedValue duration, Holder<MobEffect> effect,
-        float chance)
-        implements EnchantmentEntityEffect {
-    public static final MapCodec<BuffOnKillEffect> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            LevelBasedValue.CODEC.fieldOf("duration").forGetter(BuffOnKillEffect::duration),
-            LevelBasedValue.CODEC.fieldOf("amplifier").forGetter(BuffOnKillEffect::amplifier),
-            BuiltInRegistries.MOB_EFFECT.holderByNameCodec().fieldOf("effect").forGetter(BuffOnKillEffect::effect),
-            Codec.FLOAT.fieldOf("chance").forGetter(
-                    BuffOnKillEffect::chance))
+                float chance)
+                implements EnchantmentEntityEffect {
+        public static final MapCodec<BuffOnKillEffect> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                        LevelBasedValue.CODEC.fieldOf("amplifier").forGetter(BuffOnKillEffect::amplifier),
+                        LevelBasedValue.CODEC.fieldOf("duration").forGetter(BuffOnKillEffect::duration),
+                        BuiltInRegistries.MOB_EFFECT.holderByNameCodec().fieldOf("effect")
+                                        .forGetter(BuffOnKillEffect::effect),
+                        Codec.FLOAT.fieldOf("chance").forGetter(
+                                        BuffOnKillEffect::chance))
 
-            .apply(instance, BuffOnKillEffect::new));
+                        .apply(instance, BuffOnKillEffect::new));
 
-    @Override
-    public void apply(ServerLevel serverLevel, int i, EnchantedItemInUse enchantedItemInUse, Entity victim, Vec3 vec3) {
-        if (!victim.isAlive() && Math.random() < chance) {
-            enchantedItemInUse.owner()
-                    .addEffect(new MobEffectInstance(effect,
-                            Math.round(duration.calculate(i) * 20), Math.round(
-                                    amplifier.calculate(i))));
+        @Override
+        public void apply(ServerLevel serverLevel, int i, EnchantedItemInUse enchantedItemInUse, Entity victim,
+                        Vec3 vec3) {
+                if (!victim.isAlive() && Math.random() < chance) {
+                        enchantedItemInUse.owner()
+                                        .addEffect(new MobEffectInstance(effect,
+                                                        Math.round(duration.calculate(i) * 20), Math.round(
+                                                                        amplifier.calculate(i))));
+                        System.out.println("Amplifier: " + amplifier.calculate(i) + ", Duration: "
+                                        + duration.calculate(i));
+                }
+
         }
 
-    }
-
-    public MapCodec<BuffOnKillEffect> codec() {
-        return CODEC;
-    }
+        public MapCodec<BuffOnKillEffect> codec() {
+                return CODEC;
+        }
 
 }

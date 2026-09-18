@@ -1,10 +1,9 @@
 package com.endchants.enchantment.effect;
 
-import com.endchants.Endchants;
+import com.endchants.ModEffects;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.AreaEffectCloud;
@@ -24,7 +23,7 @@ public record RadianceEffect(int levelCoef) implements EnchantmentEntityEffect {
             Vec3 vec3) {
         if (!victim.isAlive() && Math.random() < 0.15) {
             MobEffectInstance effectInstance = new MobEffectInstance(
-                    BuiltInRegistries.MOB_EFFECT.get(Endchants.id("radiance")).orElseThrow(), 200, levelCoef);
+                    ModEffects.RADIANCE, 200, levelCoef);
             AreaEffectCloud cloud = new AreaEffectCloud(victim.level(), victim.getX(), victim.getY(), victim.getZ());
             cloud.addEffect(effectInstance);
             cloud.setRadius(3.0F);

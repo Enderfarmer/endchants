@@ -1,0 +1,41 @@
+{
+    "anvil_cost": 8,
+    "description": {
+        "translate": "enchantment.endchants.rampaging"
+    },
+    "effects": {
+        "minecraft:post_attack": [
+            {
+                "affected": "victim",
+                "effect": {
+                    "type": "endchants:buff_on_kill_effect",
+                    "amplifier": {
+                        "type": "minecraft:linear",
+                        "base": 0.0,
+                        "per_level_above_first": 0.0
+                    },
+                    "chance": 0.1,
+                    "duration": {
+                        "type": "minecraft:linear",
+                        "base": 5.0,
+                        "per_level_above_first": 5.0
+                    },
+                    "effect": "endchants:rampaging"
+                },
+                "enchanted": "attacker"
+            }
+        ]
+    },
+    "max_cost": {
+        "base": 28,
+        "per_level_above_first": 8
+    },
+    "max_level": 3,
+    "min_cost": {
+        "base": 8,
+        "per_level_above_first": 8
+    },
+    "slots": ["hand"],
+    "supported_items": "#minecraft:enchantable/weapon",
+    "weight": 6
+}

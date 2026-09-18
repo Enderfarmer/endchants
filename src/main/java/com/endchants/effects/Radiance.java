@@ -1,8 +1,7 @@
 package com.endchants.effects;
 
-import com.endchants.Endchants;
+import com.endchants.ModEffects;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -19,7 +18,7 @@ public class Radiance extends MobEffect {
         if (livingEntity instanceof Player player) {
             player.heal(i * 3.0F + 3.0F);
         }
-        livingEntity.removeEffect(BuiltInRegistries.MOB_EFFECT.get(Endchants.id("radiance")).orElseThrow());
+        livingEntity.removeEffect(ModEffects.RADIANCE);
         return true;
     }
 

@@ -40,6 +40,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> RADIANCE = genKey("radiance");
         public static ResourceKey<Enchantment> COMMITTED = genKey("committed");
         public static ResourceKey<Enchantment> GUARDING_STRIKE = genKey("guarding_strike");
+        public static ResourceKey<Enchantment> RAMPAGING = genKey("rampaging");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -131,10 +132,30 @@ public class ModEnchantments {
                                                 EnchantmentTarget.ATTACKER,
                                                 EnchantmentTarget.VICTIM,
                                                 new BuffOnKillEffect(LevelBasedValue.perLevel(2, 0),
-                                                                LevelBasedValue.perLevel(2, 2),
+                                                                LevelBasedValue.perLevel(2),
                                                                 BuiltInRegistries.MOB_EFFECT.get(Identifier
                                                                                 .withDefaultNamespace("resistance"))
                                                                                 .get(),
                                                                 .2f)));
+                register(ctx, RAMPAGING, Enchantment.enchantment(
+                                Enchantment.definition(
+                                                ctx.lookup(Registries.ITEM)
+                                                                .getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                                6,
+                                                3,
+                                                Enchantment.dynamicCost(8, 8),
+                                                Enchantment.dynamicCost(28,
+                                                                8),
+                                                8,
+                                                EquipmentSlotGroup.HAND))
+                                .withEffect(
+                                                EnchantmentEffectComponents.POST_ATTACK,
+                                                EnchantmentTarget.ATTACKER,
+                                                EnchantmentTarget.VICTIM,
+                                                new BuffOnKillEffect(LevelBasedValue.perLevel(0, 0),
+                                                                LevelBasedValue.perLevel(5),
+                                                                ModEffects.RAMPAGING,
+                                                                .1f)));
+
         }
 }

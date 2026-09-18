@@ -1,41 +1,43 @@
 {
-    "anvil_cost": 8,
-    "description": {
-        "translate": "enchantment.endchants.guarding_strike"
-    },
-    "effects": {
-        "minecraft:post_attack": [
-            {
-                "affected": "victim",
-                "effect": {
-                    "type": "endchants:buff_on_kill_effect",
-                    "amplifier": {
-                        "type": "minecraft:linear",
-                        "base": 2.0,
-                        "per_level_above_first": 0.0
-                    },
-                    "chance": 0.2,
-                    "duration": {
-                        "type": "minecraft:linear",
-                        "base": 2.0,
-                        "per_level_above_first": 2.0
-                    },
-                    "effect": "minecraft:resistance"
-                },
-                "enchanted": "attacker"
-            }
-        ]
-    },
-    "max_cost": {
-        "base": 28,
-        "per_level_above_first": 8
-    },
-    "max_level": 3,
-    "min_cost": {
-        "base": 8,
-        "per_level_above_first": 8
-    },
-    "slots": ["hand"],
-    "supported_items": "#minecraft:enchantable/weapon",
-    "weight": 6
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.endchants.guarding_strike"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "endchants:buff_on_kill_effect",
+          "amplifier": {
+            "type": "minecraft:linear",
+            "base": 2.0,
+            "per_level_above_first": 0.0
+          },
+          "chance": 0.2,
+          "duration": {
+            "type": "minecraft:linear",
+            "base": 2.0,
+            "per_level_above_first": 2.0
+          },
+          "effect": "minecraft:resistance"
+        },
+        "enchanted": "attacker"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 28,
+    "per_level_above_first": 8
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 8,
+    "per_level_above_first": 8
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#minecraft:enchantable/weapon",
+  "weight": 6
 }
