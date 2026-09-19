@@ -8,6 +8,7 @@ import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
+import com.endchants.enchantment.subpredicate.IsIllagerPredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -25,6 +26,7 @@ import net.minecraft.world.item.enchantment.TargetedConditionalEffect;
 import net.minecraft.world.item.enchantment.effects.AddValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootContext.EntityTarget;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 public class ModEnchantments {
@@ -80,6 +82,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> GUARDING_STRIKE = genKey("guarding_strike");
         public static ResourceKey<Enchantment> RAMPAGING = genKey("rampaging");
         public static ResourceKey<Enchantment> FREEZING = genKey("freezing");
+        public static ResourceKey<Enchantment> ILLAGERS_BANE = genKey("illagers_bane");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -120,6 +123,12 @@ public class ModEnchantments {
                                 weaponEnchant(ctx, 4, 3, Enchantment.dynamicCost(10, 8),
                                                 Enchantment.dynamicCost(15, 10), 5,
                                                 new FreezingEffect(LevelBasedValue.perLevel(150, 50))));
+                register(ctx, ILLAGERS_BANE, weaponEnchant(ctx, 12, 5, Enchantment.dynamicCost(5, 5),
+                                Enchantment.dynamicCost(10, 5), 3).withEffect(EnchantmentEffectComponents.DAMAGE,
+                                                new AddValue(LevelBasedValue.perLevel(3, 2)),
+                                                LootItemEntityPropertyCondition.hasProperties(EntityTarget.THIS,
+                                                                EntityPredicate.Builder.entity().subPredicate(
+                                                                                new IsIllagerPredicate()))));
 
         }
 }
