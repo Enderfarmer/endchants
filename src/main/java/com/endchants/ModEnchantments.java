@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.endchants.enchantment.effect.BuffOnKillEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
+import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
@@ -78,6 +79,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> COMMITTED = genKey("committed");
         public static ResourceKey<Enchantment> GUARDING_STRIKE = genKey("guarding_strike");
         public static ResourceKey<Enchantment> RAMPAGING = genKey("rampaging");
+        public static ResourceKey<Enchantment> FREEZING = genKey("freezing");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -114,6 +116,10 @@ public class ModEnchantments {
                                                                 LevelBasedValue.perLevel(5),
                                                                 ModEffects.RAMPAGING,
                                                                 .1f)));
+                register(ctx, FREEZING,
+                                weaponEnchant(ctx, 4, 3, Enchantment.dynamicCost(10, 8),
+                                                Enchantment.dynamicCost(15, 10), 5,
+                                                new FreezingEffect(LevelBasedValue.perLevel(150, 50))));
 
         }
 }
