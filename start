@@ -1,0 +1,14 @@
+echo "Starting development client..."
+
+read -p "Run DataGen? (Y/n): " val
+
+
+if [ "$val" == "Y" ]
+then 
+    echo "Running DataGen..."
+    ./gradlew runDataGen
+    wait
+fi
+
+echo "Running client..."
+./gradlew runClient
