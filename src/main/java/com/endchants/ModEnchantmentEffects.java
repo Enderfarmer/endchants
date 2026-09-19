@@ -3,6 +3,7 @@ package com.endchants;
 import com.endchants.enchantment.effect.BuffOnKillEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
 import com.endchants.enchantment.effect.FreezingEffect;
+import com.endchants.enchantment.effect.GravityEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
 import com.mojang.serialization.MapCodec;
@@ -21,6 +22,8 @@ public class ModEnchantmentEffects {
         public static MapCodec<BuffOnKillEffect> BUFF_ON_KILL_EFFECT = register("buff_on_kill_effect",
                         BuffOnKillEffect.CODEC);
         public static MapCodec<FreezingEffect> FREEZING_EFFECT = register("freezing_effect", FreezingEffect.CODEC);
+
+        public static MapCodec<GravityEffect> GRAVITY_EFFECT = register("gravity_effect", GravityEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
