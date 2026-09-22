@@ -1,6 +1,7 @@
 // 1.21.11	-999999999-01-01T00:00:00	Endchants/Enchantments
 397e3bc298d0c0064a7c3f333f62264c54c5216e data/endchants/enchantment/backstabbing.json
 354eebdf54f29314dc970efabfc04e0d3a14915c data/endchants/enchantment/committed.json
+792d8303666567b14ee4808e1661f81a409c75c7 data/endchants/enchantment/critical_hit.json
 01b2ba317a6a8ca448379df122974870483965f5 data/endchants/enchantment/flesh_eater.json
 0c7e3be857035fb436044054c71b01150a0a6302 data/endchants/enchantment/freezing.json
 6d5b8862512a17beb0f0616ce9c01ab024a875a9 data/endchants/enchantment/gravity.json

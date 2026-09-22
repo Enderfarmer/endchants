@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.endchants.enchantment.effect.BackstabbingEffect;
 import com.endchants.enchantment.effect.BuffOnKillEffect;
+import com.endchants.enchantment.effect.CriticalHitEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
 import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.GravityEffect;
@@ -65,6 +66,14 @@ public class ModEnchantments {
                                 .withEffect(when, effect, predicate);
         }
 
+        public static <T extends EnchantmentValueEffect> Enchantment.Builder weaponEnchant(
+                        BootstrapContext<Enchantment> ctx, int weight, int levels,
+                        Enchantment.Cost min, Enchantment.Cost max, int anvilCost,
+                        DataComponentType<List<ConditionalEffect<T>>> when, T effect) {
+                return weaponEnchant(ctx, weight, levels, min, max, anvilCost)
+                                .withEffect(when, effect);
+        }
+
         public static Enchantment.Builder weaponEnchant(BootstrapContext<Enchantment> ctx, int weight, int levels,
                         Enchantment.Cost min, Enchantment.Cost max, int anvilCost) {
                 return Enchantment
@@ -100,6 +109,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> ILLAGERS_BANE = genKey("illagers_bane");
         public static ResourceKey<Enchantment> GRAVITY = genKey("gravity");
         public static ResourceKey<Enchantment> BACKSTABBING = genKey("backstabbing");
+        public static ResourceKey<Enchantment> CRITICAL_HIT = genKey("critical_hit");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -155,6 +165,9 @@ public class ModEnchantments {
                                                 LootItemEntityPropertyCondition.hasProperties(EntityTarget.THIS,
                                                                 EntityPredicate.Builder.entity().subPredicate(
                                                                                 new IsBackstabbedPredicate()))));
+                register(ctx, CRITICAL_HIT,
+                                weaponEnchant(ctx, 5, 3, Enchantment.dynamicCost(8, 6), Enchantment.dynamicCost(10, 6),
+                                                4, EnchantmentEffectComponents.DAMAGE, new CriticalHitEffect()));
 
         }
 }
