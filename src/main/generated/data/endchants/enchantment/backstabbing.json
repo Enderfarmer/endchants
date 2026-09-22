@@ -1,0 +1,43 @@
+{
+  "anvil_cost": 3,
+  "description": {
+    "translate": "enchantment.endchants.backstabbing"
+  },
+  "effects": {
+    "minecraft:damage": [
+      {
+        "effect": {
+          "type": "endchants:backstabbing_effect",
+          "coef": {
+            "type": "minecraft:linear",
+            "base": 1.2,
+            "per_level_above_first": 0.2
+          }
+        },
+        "requirements": {
+          "condition": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "type_specific": {
+              "type": "endchants:is_backstabbed"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 10,
+    "per_level_above_first": 5
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 6,
+    "per_level_above_first": 5
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#minecraft:enchantable/weapon",
+  "weight": 9
+}

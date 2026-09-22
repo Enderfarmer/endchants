@@ -1,5 +1,6 @@
 package com.endchants;
 
+import com.endchants.enchantment.effect.BackstabbingEffect;
 import com.endchants.enchantment.effect.BuffOnKillEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
 import com.endchants.enchantment.effect.FreezingEffect;
@@ -11,6 +12,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
+import net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect;
 
 public class ModEnchantmentEffects {
         public static MapCodec<FleshEaterEffect> FLESH_EATER_EFFECT = register("flesh_eater_effect",
@@ -25,9 +27,16 @@ public class ModEnchantmentEffects {
 
         public static MapCodec<GravityEffect> GRAVITY_EFFECT = register("gravity_effect", GravityEffect.CODEC);
 
+        public static MapCodec<BackstabbingEffect> BACKSTABBING_EFFECT = registerValEff("backstabbing_effect",
+                        BackstabbingEffect.CODEC);
+
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
                                 Endchants.id(id), codec);
+        }
+
+        private static <T extends EnchantmentValueEffect> MapCodec<T> registerValEff(String id, MapCodec<T> codec) {
+                return Registry.register(BuiltInRegistries.ENCHANTMENT_VALUE_EFFECT_TYPE, Endchants.id(id), codec);
         }
 
         public static void registerModEnchantmentEffects() {

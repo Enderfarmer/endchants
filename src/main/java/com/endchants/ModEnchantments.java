@@ -2,12 +2,14 @@ package com.endchants;
 
 import java.util.List;
 
+import com.endchants.enchantment.effect.BackstabbingEffect;
 import com.endchants.enchantment.effect.BuffOnKillEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
 import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.GravityEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
+import com.endchants.enchantment.subpredicate.IsBackstabbedPredicate;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 import com.endchants.enchantment.subpredicate.IsIllagerPredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
@@ -19,6 +21,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.item.enchantment.ConditionalEffect;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
@@ -26,8 +29,10 @@ import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.TargetedConditionalEffect;
 import net.minecraft.world.item.enchantment.effects.AddValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
+import net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootContext.EntityTarget;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 public class ModEnchantments {
@@ -49,6 +54,15 @@ public class ModEnchantments {
                 return weaponEnchant(ctx, weight, levels, min, max, anvilCost)
                                 .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
                                                 EnchantmentTarget.VICTIM, effect);
+        }
+
+        public static <T extends EnchantmentValueEffect> Enchantment.Builder weaponEnchant(
+                        BootstrapContext<Enchantment> ctx, int weight, int levels,
+                        Enchantment.Cost min, Enchantment.Cost max, int anvilCost,
+                        DataComponentType<List<ConditionalEffect<T>>> when, T effect,
+                        LootItemCondition.Builder predicate) {
+                return weaponEnchant(ctx, weight, levels, min, max, anvilCost)
+                                .withEffect(when, effect, predicate);
         }
 
         public static Enchantment.Builder weaponEnchant(BootstrapContext<Enchantment> ctx, int weight, int levels,
@@ -85,6 +99,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> FREEZING = genKey("freezing");
         public static ResourceKey<Enchantment> ILLAGERS_BANE = genKey("illagers_bane");
         public static ResourceKey<Enchantment> GRAVITY = genKey("gravity");
+        public static ResourceKey<Enchantment> BACKSTABBING = genKey("backstabbing");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -133,6 +148,13 @@ public class ModEnchantments {
                                                                                 new IsIllagerPredicate()))));
                 register(ctx, GRAVITY, weaponEnchant(ctx, 6, 1, Enchantment.dynamicCost(10, 6),
                                 Enchantment.dynamicCost(15, 6), 5, new GravityEffect(0.4f)));
+                register(ctx, BACKSTABBING,
+                                weaponEnchant(ctx, 9, 3, Enchantment.dynamicCost(6, 5), Enchantment.dynamicCost(10, 5),
+                                                3, EnchantmentEffectComponents.DAMAGE,
+                                                new BackstabbingEffect(LevelBasedValue.perLevel(1.2f, .2f)),
+                                                LootItemEntityPropertyCondition.hasProperties(EntityTarget.THIS,
+                                                                EntityPredicate.Builder.entity().subPredicate(
+                                                                                new IsBackstabbedPredicate()))));
 
         }
 }

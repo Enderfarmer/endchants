@@ -1,5 +1,6 @@
 package com.endchants;
 
+import com.endchants.enchantment.subpredicate.IsBackstabbedPredicate;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 import com.endchants.enchantment.subpredicate.IsIllagerPredicate;
 import com.mojang.serialization.MapCodec;
@@ -16,5 +17,6 @@ public class ModSubPredicates {
     public static void registerSubPredicates() {
         register("is_hurt", IsHurtPredicate.CODEC);
         register("is_illager", IsIllagerPredicate.CODEC);
+        register("is_backstabbed", IsBackstabbedPredicate.CODEC);
     }
 }
