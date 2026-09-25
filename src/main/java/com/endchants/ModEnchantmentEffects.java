@@ -3,6 +3,7 @@ package com.endchants;
 import com.endchants.enchantment.effect.BackstabbingEffect;
 import com.endchants.enchantment.effect.BuffOnKillEffect;
 import com.endchants.enchantment.effect.CriticalHitEffect;
+import com.endchants.enchantment.effect.EchoEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
 import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.GravityEffect;
@@ -32,6 +33,7 @@ public class ModEnchantmentEffects {
                         BackstabbingEffect.CODEC);
         public static MapCodec<CriticalHitEffect> CRITICAL_HIT_EFFECT = registerValEff("critical_hit_effect",
                         CriticalHitEffect.CODEC);
+        public static MapCodec<EchoEffect> ECHO_EFFECT = register("echo_effect", EchoEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,

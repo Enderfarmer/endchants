@@ -5,6 +5,7 @@ import java.util.List;
 import com.endchants.enchantment.effect.BackstabbingEffect;
 import com.endchants.enchantment.effect.BuffOnKillEffect;
 import com.endchants.enchantment.effect.CriticalHitEffect;
+import com.endchants.enchantment.effect.EchoEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
 import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.GravityEffect;
@@ -110,6 +111,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> GRAVITY = genKey("gravity");
         public static ResourceKey<Enchantment> BACKSTABBING = genKey("backstabbing");
         public static ResourceKey<Enchantment> CRITICAL_HIT = genKey("critical_hit");
+        public static ResourceKey<Enchantment> ECHO = genKey("echo");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -168,6 +170,8 @@ public class ModEnchantments {
                 register(ctx, CRITICAL_HIT,
                                 weaponEnchant(ctx, 5, 3, Enchantment.dynamicCost(8, 6), Enchantment.dynamicCost(10, 6),
                                                 4, EnchantmentEffectComponents.DAMAGE, new CriticalHitEffect()));
+                register(ctx, ECHO, weaponEnchant(ctx, 4, 3, Enchantment.dynamicCost(10, 8),
+                                Enchantment.dynamicCost(13, 8), 5, new EchoEffect()));
 
         }
 }
