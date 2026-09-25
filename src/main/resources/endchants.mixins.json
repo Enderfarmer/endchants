@@ -2,7 +2,7 @@
     "required": true,
     "package": "com.endchants.mixin",
     "compatibilityLevel": "JAVA_21",
-    "mixins": ["PlayerMixin"],
+    "mixins": ["PlayerMixin", "VoidedMixin"],
     "injectors": {
         "defaultRequire": 1
     },

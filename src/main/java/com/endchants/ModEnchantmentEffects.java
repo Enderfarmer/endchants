@@ -9,6 +9,7 @@ import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.GravityEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
+import com.endchants.enchantment.effect.VoidedEffect;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.Registry;
@@ -34,6 +35,7 @@ public class ModEnchantmentEffects {
         public static MapCodec<CriticalHitEffect> CRITICAL_HIT_EFFECT = registerValEff("critical_hit_effect",
                         CriticalHitEffect.CODEC);
         public static MapCodec<EchoEffect> ECHO_EFFECT = register("echo_effect", EchoEffect.CODEC);
+        public static MapCodec<VoidedEffect> VOIDED_EFFECT = register("void_strike_effect", VoidedEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
