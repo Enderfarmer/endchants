@@ -16,6 +16,7 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
         pack.addProvider(ModEnchantmentGenerator::new);
         pack.addProvider(ModEnchantmentTagProvider::new);
+        pack.addProvider(ModDamageTypeProvider::new);
     }
 
     @Override

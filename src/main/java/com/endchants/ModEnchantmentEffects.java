@@ -9,6 +9,7 @@ import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.GravityEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
+import com.endchants.enchantment.effect.ShockwaveEffect;
 import com.endchants.enchantment.effect.VoidedEffect;
 import com.mojang.serialization.MapCodec;
 
@@ -36,6 +37,7 @@ public class ModEnchantmentEffects {
                         CriticalHitEffect.CODEC);
         public static MapCodec<EchoEffect> ECHO_EFFECT = register("echo_effect", EchoEffect.CODEC);
         public static MapCodec<VoidedEffect> VOIDED_EFFECT = register("void_strike_effect", VoidedEffect.CODEC);
+        public static MapCodec<ShockwaveEffect> SHOCKWAVE_EFFECT = register("shockwave_effect", ShockwaveEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,

@@ -11,6 +11,7 @@ import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.GravityEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
+import com.endchants.enchantment.effect.ShockwaveEffect;
 import com.endchants.enchantment.effect.VoidedEffect;
 import com.endchants.enchantment.subpredicate.IsBackstabbedPredicate;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
@@ -114,6 +115,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> CRITICAL_HIT = genKey("critical_hit");
         public static ResourceKey<Enchantment> ECHO = genKey("echo");
         public static ResourceKey<Enchantment> VOID_STRIKE = genKey("void_strike");
+        public static ResourceKey<Enchantment> SHOCKWAVE = genKey("shockwave");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -177,6 +179,9 @@ public class ModEnchantments {
                 register(ctx, VOID_STRIKE, weaponEnchant(ctx, 4, 3, Enchantment.dynamicCost(10, 8),
                                 Enchantment.dynamicCost(13, 8), 5,
                                 new VoidedEffect(LevelBasedValue.perLevel(2.0f, 2.0f))));
+                register(ctx, SHOCKWAVE,
+                                weaponEnchant(ctx, 5, 3, Enchantment.dynamicCost(8, 9), Enchantment.dynamicCost(11, 9),
+                                                5, new ShockwaveEffect(LevelBasedValue.perLevel(3, 2))));
 
         }
 }
