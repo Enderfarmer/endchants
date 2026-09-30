@@ -2,6 +2,7 @@ package com.endchants;
 
 import com.endchants.enchantment.effect.BackstabbingEffect;
 import com.endchants.enchantment.effect.BuffOnKillEffect;
+import com.endchants.enchantment.effect.CloudEffect;
 import com.endchants.enchantment.effect.CriticalHitEffect;
 import com.endchants.enchantment.effect.EchoEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
@@ -38,6 +39,7 @@ public class ModEnchantmentEffects {
         public static MapCodec<EchoEffect> ECHO_EFFECT = register("echo_effect", EchoEffect.CODEC);
         public static MapCodec<VoidedEffect> VOIDED_EFFECT = register("void_strike_effect", VoidedEffect.CODEC);
         public static MapCodec<ShockwaveEffect> SHOCKWAVE_EFFECT = register("shockwave_effect", ShockwaveEffect.CODEC);
+        public static MapCodec<CloudEffect> CLOUD_EFFECT = register("cloud_effect", CloudEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,

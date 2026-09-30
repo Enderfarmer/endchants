@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.endchants.enchantment.effect.BackstabbingEffect;
 import com.endchants.enchantment.effect.BuffOnKillEffect;
+import com.endchants.enchantment.effect.CloudEffect;
 import com.endchants.enchantment.effect.CriticalHitEffect;
 import com.endchants.enchantment.effect.EchoEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
@@ -116,6 +117,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> ECHO = genKey("echo");
         public static ResourceKey<Enchantment> VOID_STRIKE = genKey("void_strike");
         public static ResourceKey<Enchantment> SHOCKWAVE = genKey("shockwave");
+        public static ResourceKey<Enchantment> POISON_CLOUD = genKey("poison_cloud");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -182,6 +184,11 @@ public class ModEnchantments {
                 register(ctx, SHOCKWAVE,
                                 weaponEnchant(ctx, 5, 3, Enchantment.dynamicCost(8, 9), Enchantment.dynamicCost(11, 9),
                                                 5, new ShockwaveEffect(LevelBasedValue.perLevel(3, 2))));
+                register(ctx, POISON_CLOUD, weaponEnchant(ctx, 8, 3, Enchantment.dynamicCost(4, 3),
+                                Enchantment.dynamicCost(7, 4), 2,
+                                new CloudEffect(BuiltInRegistries.MOB_EFFECT
+                                                .get(Identifier.withDefaultNamespace("poison")).get(), 3, 0.3f,
+                                                LevelBasedValue.perLevel(70, 30), LevelBasedValue.perLevel(2))));
 
         }
 }

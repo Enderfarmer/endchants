@@ -1,0 +1,43 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.endchants.poison_cloud"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "endchants:cloud_effect",
+          "amplifier": {
+            "type": "minecraft:linear",
+            "base": 1.0,
+            "per_level_above_first": 1.0
+          },
+          "duration": {
+            "type": "minecraft:linear",
+            "base": 50.0,
+            "per_level_above_first": 20.0
+          },
+          "effect": "minecraft:poison",
+          "radius": 3.0
+        },
+        "enchanted": "attacker"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 7,
+    "per_level_above_first": 4
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 4,
+    "per_level_above_first": 3
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#minecraft:enchantable/weapon",
+  "weight": 8
+}
