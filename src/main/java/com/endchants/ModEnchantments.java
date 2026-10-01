@@ -118,6 +118,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> VOID_STRIKE = genKey("void_strike");
         public static ResourceKey<Enchantment> SHOCKWAVE = genKey("shockwave");
         public static ResourceKey<Enchantment> POISON_CLOUD = genKey("poison_cloud");
+        public static ResourceKey<Enchantment> WEAKENING = genKey("weakening");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -189,6 +190,11 @@ public class ModEnchantments {
                                 new CloudEffect(BuiltInRegistries.MOB_EFFECT
                                                 .get(Identifier.withDefaultNamespace("poison")).get(), 3, 0.3f,
                                                 LevelBasedValue.perLevel(70, 30), LevelBasedValue.perLevel(2))));
+                register(ctx, WEAKENING, weaponEnchant(ctx, 7, 3, Enchantment.dynamicCost(5, 4),
+                                Enchantment.dynamicCost(8, 4), 4,
+                                new CloudEffect(BuiltInRegistries.MOB_EFFECT
+                                                .get(Identifier.withDefaultNamespace("weakness")).get(), 4, 1,
+                                                LevelBasedValue.perLevel(100, 10), LevelBasedValue.perLevel(0, 1))));
 
         }
 }
