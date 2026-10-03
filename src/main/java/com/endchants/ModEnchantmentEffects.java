@@ -8,6 +8,7 @@ import com.endchants.enchantment.effect.EchoEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
 import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.GravityEffect;
+import com.endchants.enchantment.effect.LeechingEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
 import com.endchants.enchantment.effect.ShockwaveEffect;
@@ -42,6 +43,7 @@ public class ModEnchantmentEffects {
         public static MapCodec<ShockwaveEffect> SHOCKWAVE_EFFECT = register("shockwave_effect", ShockwaveEffect.CODEC);
         public static MapCodec<CloudEffect> CLOUD_EFFECT = register("cloud_effect", CloudEffect.CODEC);
         public static MapCodec<StunningEffect> STUNNING_EFFECT = register("stunning_effect", StunningEffect.CODEC);
+        public static MapCodec<LeechingEffect> LEECHING_EFFECT = register("leeching_effect", LeechingEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,

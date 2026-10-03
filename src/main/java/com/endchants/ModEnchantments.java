@@ -10,6 +10,7 @@ import com.endchants.enchantment.effect.EchoEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
 import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.GravityEffect;
+import com.endchants.enchantment.effect.LeechingEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
 import com.endchants.enchantment.effect.ShockwaveEffect;
@@ -121,6 +122,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> POISON_CLOUD = genKey("poison_cloud");
         public static ResourceKey<Enchantment> WEAKENING = genKey("weakening");
         public static ResourceKey<Enchantment> STUNNING = genKey("stunning");
+        public static ResourceKey<Enchantment> LEECHING = genKey("leeching");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -200,6 +202,9 @@ public class ModEnchantments {
                 register(ctx, STUNNING,
                                 weaponEnchant(ctx, 5, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(10, 5),
                                                 5, new StunningEffect(LevelBasedValue.perLevel(0.05f))));
+                register(ctx, LEECHING, weaponEnchant(ctx, 7, 3, Enchantment.dynamicCost(10, 8),
+                                Enchantment.dynamicCost(13, 8), 5,
+                                new LeechingEffect(LevelBasedValue.perLevel(.05f, .02f))));
 
         }
 }
