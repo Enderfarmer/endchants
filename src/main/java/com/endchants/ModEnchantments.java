@@ -13,6 +13,7 @@ import com.endchants.enchantment.effect.GravityEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
 import com.endchants.enchantment.effect.ShockwaveEffect;
+import com.endchants.enchantment.effect.StunningEffect;
 import com.endchants.enchantment.effect.VoidedEffect;
 import com.endchants.enchantment.subpredicate.IsBackstabbedPredicate;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
@@ -119,6 +120,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> SHOCKWAVE = genKey("shockwave");
         public static ResourceKey<Enchantment> POISON_CLOUD = genKey("poison_cloud");
         public static ResourceKey<Enchantment> WEAKENING = genKey("weakening");
+        public static ResourceKey<Enchantment> STUNNING = genKey("stunning");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -195,6 +197,9 @@ public class ModEnchantments {
                                 new CloudEffect(BuiltInRegistries.MOB_EFFECT
                                                 .get(Identifier.withDefaultNamespace("weakness")).get(), 4, 1,
                                                 LevelBasedValue.perLevel(100, 10), LevelBasedValue.perLevel(0, 1))));
+                register(ctx, STUNNING,
+                                weaponEnchant(ctx, 5, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(10, 5),
+                                                5, new StunningEffect(LevelBasedValue.perLevel(0.05f))));
 
         }
 }

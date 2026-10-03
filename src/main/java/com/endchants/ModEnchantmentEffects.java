@@ -11,6 +11,7 @@ import com.endchants.enchantment.effect.GravityEffect;
 import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
 import com.endchants.enchantment.effect.ShockwaveEffect;
+import com.endchants.enchantment.effect.StunningEffect;
 import com.endchants.enchantment.effect.VoidedEffect;
 import com.mojang.serialization.MapCodec;
 
@@ -40,6 +41,7 @@ public class ModEnchantmentEffects {
         public static MapCodec<VoidedEffect> VOIDED_EFFECT = register("void_strike_effect", VoidedEffect.CODEC);
         public static MapCodec<ShockwaveEffect> SHOCKWAVE_EFFECT = register("shockwave_effect", ShockwaveEffect.CODEC);
         public static MapCodec<CloudEffect> CLOUD_EFFECT = register("cloud_effect", CloudEffect.CODEC);
+        public static MapCodec<StunningEffect> STUNNING_EFFECT = register("stunning_effect", StunningEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
