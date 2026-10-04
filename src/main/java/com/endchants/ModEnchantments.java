@@ -15,6 +15,7 @@ import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
 import com.endchants.enchantment.effect.ShockwaveEffect;
 import com.endchants.enchantment.effect.StunningEffect;
+import com.endchants.enchantment.effect.SwirlingEffect;
 import com.endchants.enchantment.effect.VoidedEffect;
 import com.endchants.enchantment.subpredicate.IsBackstabbedPredicate;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
@@ -123,6 +124,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> WEAKENING = genKey("weakening");
         public static ResourceKey<Enchantment> STUNNING = genKey("stunning");
         public static ResourceKey<Enchantment> LEECHING = genKey("leeching");
+        public static ResourceKey<Enchantment> SWIRLING = genKey("swirling");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -205,6 +207,8 @@ public class ModEnchantments {
                 register(ctx, LEECHING, weaponEnchant(ctx, 7, 3, Enchantment.dynamicCost(10, 8),
                                 Enchantment.dynamicCost(13, 8), 5,
                                 new LeechingEffect(LevelBasedValue.perLevel(.05f, .02f))));
+                register(ctx, SWIRLING, weaponEnchant(ctx, 6, 3, Enchantment.dynamicCost(11, 7),
+                                Enchantment.dynamicCost(14, 7), 3, new SwirlingEffect(LevelBasedValue.perLevel(3))));
 
         }
 }

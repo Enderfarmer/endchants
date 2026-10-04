@@ -7,6 +7,8 @@ import net.minecraft.world.damagesource.DamageType;
 public class ModDamageTypes {
     public static ResourceKey<DamageType> SHOCKWAVE_DAMAGE = ResourceKey.create(Registries.DAMAGE_TYPE,
             Endchants.id("shockwave_damage"));
+    public static ResourceKey<DamageType> WHIRLWIND_DAMAGE = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Endchants.id("whirlwind_damage"));
 
     public static void init() {
     }

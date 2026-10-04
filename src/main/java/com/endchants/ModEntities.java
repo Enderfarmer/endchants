@@ -3,6 +3,7 @@ package com.endchants;
 import com.endchants.entity.CustomAoeCloudEntity;
 import com.endchants.entity.EntityDims;
 import com.endchants.entity.ShockwaveEntity;
+import com.endchants.entity.WhirlwindEntity;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,6 +20,8 @@ public class ModEntities {
         public static final EntityType<CustomAoeCloudEntity> CUSTOM_AOE_CLOUD = register("custom_aoe_cloud",
                         EntityType.Builder.of(CustomAoeCloudEntity::new, MobCategory.MISC).noLootTable().fireImmune()
                                         .sized(6.0F, 0.5F).clientTrackingRange(10).updateInterval(Integer.MAX_VALUE));
+        public static final EntityType<WhirlwindEntity> WHIRLWIND = register("whirlwind", new EntityDims(3, 1.5f),
+                        WhirlwindEntity::new);
 
         public static <T extends Entity> EntityType<T> register(String name, EntityDims dimensions,
                         EntityType.EntityFactory<T> factory) {

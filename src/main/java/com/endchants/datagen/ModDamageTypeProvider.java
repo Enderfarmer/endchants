@@ -23,5 +23,6 @@ public class ModDamageTypeProvider extends FabricDynamicRegistryProvider {
     @Override
     protected void configure(Provider registries, Entries entries) {
         entries.add(ModDamageTypes.SHOCKWAVE_DAMAGE, new DamageType("shockwave_damage", 5f));
+        entries.add(ModDamageTypes.WHIRLWIND_DAMAGE, new DamageType("whirlwind_damage", 7f));
     }
 }
