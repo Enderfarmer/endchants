@@ -7,6 +7,7 @@ import com.endchants.enchantment.effect.BuffOnKillEffect;
 import com.endchants.enchantment.effect.CloudEffect;
 import com.endchants.enchantment.effect.CriticalHitEffect;
 import com.endchants.enchantment.effect.EchoEffect;
+import com.endchants.enchantment.effect.ExplodingEffect;
 import com.endchants.enchantment.effect.FleshEaterEffect;
 import com.endchants.enchantment.effect.FreezingEffect;
 import com.endchants.enchantment.effect.GravityEffect;
@@ -125,6 +126,7 @@ public class ModEnchantments {
         public static ResourceKey<Enchantment> STUNNING = genKey("stunning");
         public static ResourceKey<Enchantment> LEECHING = genKey("leeching");
         public static ResourceKey<Enchantment> SWIRLING = genKey("swirling");
+        public static ResourceKey<Enchantment> EXPLODING = genKey("exploding");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, FLESH_EATER,
@@ -209,6 +211,8 @@ public class ModEnchantments {
                                 new LeechingEffect(LevelBasedValue.perLevel(.05f, .02f))));
                 register(ctx, SWIRLING, weaponEnchant(ctx, 6, 3, Enchantment.dynamicCost(11, 7),
                                 Enchantment.dynamicCost(14, 7), 3, new SwirlingEffect(LevelBasedValue.perLevel(3))));
+                register(ctx, EXPLODING, weaponEnchant(ctx, 3, 3, Enchantment.dynamicCost(14, 8),
+                                Enchantment.dynamicCost(16, 8), 5, new ExplodingEffect(LevelBasedValue.perLevel(.2f))));
 
         }
 }
