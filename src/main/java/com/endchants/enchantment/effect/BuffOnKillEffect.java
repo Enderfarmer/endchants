@@ -6,18 +6,14 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.item.enchantment.EnchantedItemInUse;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
-import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
-import net.minecraft.world.phys.Vec3;
 
 public record BuffOnKillEffect(LevelBasedValue amplifier, LevelBasedValue duration, Holder<MobEffect> effect,
                 float chance)
-                implements EnchantmentEntityEffect {
+                implements EntityEffectBase {
         public static final MapCodec<BuffOnKillEffect> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                         LevelBasedValue.CODEC.fieldOf("amplifier").forGetter(BuffOnKillEffect::amplifier),
                         LevelBasedValue.CODEC.fieldOf("duration").forGetter(BuffOnKillEffect::duration),
@@ -29,17 +25,13 @@ public record BuffOnKillEffect(LevelBasedValue amplifier, LevelBasedValue durati
                         .apply(instance, BuffOnKillEffect::new));
 
         @Override
-        public void apply(ServerLevel serverLevel, int i, EnchantedItemInUse enchantedItemInUse, Entity victim,
-                        Vec3 vec3) {
-                if (!victim.isAlive() && Math.random() < chance) {
-                        enchantedItemInUse.owner()
+        public void affectOwnerOnKill(int i, LivingEntity owner) {
+                if (Math.random() < chance) {
+                        owner
                                         .addEffect(new MobEffectInstance(effect,
                                                         Math.round(duration.calculate(i) * 20), Math.round(
                                                                         amplifier.calculate(i))));
-                        System.out.println("Amplifier: " + amplifier.calculate(i) + ", Duration: "
-                                        + duration.calculate(i));
                 }
-
         }
 
         public MapCodec<BuffOnKillEffect> codec() {
