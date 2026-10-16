@@ -1,7 +1,8 @@
 package com.endchants.datagen;
 
+import com.endchants.ModArmorEnchantments;
 import com.endchants.ModEnchantmentEffects;
-import com.endchants.ModEnchantments;
+import com.endchants.ModMeleeEnchantments;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -17,10 +18,12 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModEnchantmentGenerator::new);
         pack.addProvider(ModEnchantmentTagProvider::new);
         pack.addProvider(ModDamageTypeProvider::new);
+        // pack.addProvider(ModItemTagProvider::new);
     }
 
     @Override
     public void buildRegistry(RegistrySetBuilder registryBuilder) {
-        registryBuilder.add(Registries.ENCHANTMENT, ModEnchantments::init);
+        registryBuilder.add(Registries.ENCHANTMENT, ModMeleeEnchantments::init);
+        registryBuilder.add(Registries.ENCHANTMENT, ModArmorEnchantments::init);
     }
 }

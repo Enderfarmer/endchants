@@ -31,6 +31,6 @@
   "slots": [
     "hand"
   ],
-  "supported_items": "#minecraft:enchantable/weapon",
+  "supported_items": "#minecraft:enchantable/melee_weapon",
   "weight": 7
 }

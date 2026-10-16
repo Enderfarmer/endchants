@@ -2,7 +2,8 @@ package com.endchants.datagen;
 
 import java.util.concurrent.CompletableFuture;
 
-import com.endchants.ModEnchantments;
+import com.endchants.ModArmorEnchantments;
+import com.endchants.ModMeleeEnchantments;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -19,7 +20,7 @@ public class ModEnchantmentTagProvider extends FabricTagProvider<Enchantment> {
 
     @Override
     protected void addTags(HolderLookup.Provider wrapperLookup) {
-        builder(EnchantmentTags.NON_TREASURE).add(ModEnchantments.FLESH_EATER);
-        builder(EnchantmentTags.ARMOR_EXCLUSIVE).add(ModEnchantments.REPELLING);
+        builder(EnchantmentTags.NON_TREASURE).add(ModMeleeEnchantments.FLESH_EATER);
+        builder(EnchantmentTags.ARMOR_EXCLUSIVE).add(ModArmorEnchantments.REPELLING);
     }
 }
