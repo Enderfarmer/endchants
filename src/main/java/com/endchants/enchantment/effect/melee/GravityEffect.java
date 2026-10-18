@@ -1,4 +1,4 @@
-package com.endchants.enchantment.effect;
+package com.endchants.enchantment.effect.melee;
 
 import java.util.List;
 

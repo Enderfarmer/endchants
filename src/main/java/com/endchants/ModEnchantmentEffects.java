@@ -1,21 +1,22 @@
 package com.endchants;
 
-import com.endchants.enchantment.effect.BackstabbingEffect;
-import com.endchants.enchantment.effect.BuffOnKillEffect;
-import com.endchants.enchantment.effect.CloudEffect;
-import com.endchants.enchantment.effect.CriticalHitEffect;
-import com.endchants.enchantment.effect.EchoEffect;
-import com.endchants.enchantment.effect.ExplodingEffect;
-import com.endchants.enchantment.effect.FleshEaterEffect;
-import com.endchants.enchantment.effect.FreezingEffect;
-import com.endchants.enchantment.effect.GravityEffect;
-import com.endchants.enchantment.effect.LeechingEffect;
-import com.endchants.enchantment.effect.RadianceEffect;
 import com.endchants.enchantment.effect.RepellingEffect;
-import com.endchants.enchantment.effect.ShockwaveEffect;
-import com.endchants.enchantment.effect.StunningEffect;
-import com.endchants.enchantment.effect.SwirlingEffect;
-import com.endchants.enchantment.effect.VoidedEffect;
+import com.endchants.enchantment.effect.melee.BackstabbingEffect;
+import com.endchants.enchantment.effect.melee.BuffOnKillEffect;
+import com.endchants.enchantment.effect.melee.CloudEffect;
+import com.endchants.enchantment.effect.melee.CriticalHitEffect;
+import com.endchants.enchantment.effect.melee.EchoEffect;
+import com.endchants.enchantment.effect.melee.ExplodingEffect;
+import com.endchants.enchantment.effect.melee.FleshEaterEffect;
+import com.endchants.enchantment.effect.melee.FreezingEffect;
+import com.endchants.enchantment.effect.melee.GravityEffect;
+import com.endchants.enchantment.effect.melee.LeechingEffect;
+import com.endchants.enchantment.effect.melee.RadianceEffect;
+import com.endchants.enchantment.effect.melee.ShockwaveEffect;
+import com.endchants.enchantment.effect.melee.StunningEffect;
+import com.endchants.enchantment.effect.melee.SwirlingEffect;
+import com.endchants.enchantment.effect.melee.VoidedEffect;
+import com.endchants.enchantment.ranged.ChainReactionEffect;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.Registry;
@@ -48,6 +49,8 @@ public class ModEnchantmentEffects {
         public static MapCodec<LeechingEffect> LEECHING_EFFECT = register("leeching_effect", LeechingEffect.CODEC);
         public static MapCodec<SwirlingEffect> SWIRLING_EFFECT = register("swirling_effect", SwirlingEffect.CODEC);
         public static MapCodec<ExplodingEffect> EXPLODING_EFFECT = register("exploding_effect", ExplodingEffect.CODEC);
+        public static MapCodec<ChainReactionEffect> CHAIN_REACTION_EFFECT = register("chain_reaction_effect",
+                        ChainReactionEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,

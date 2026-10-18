@@ -1,6 +1,7 @@
-package com.endchants.enchantment.effect;
+package com.endchants.enchantment.effect.melee;
 
 import com.endchants.ModEntities;
+import com.endchants.enchantment.effect.EntityEffectBase;
 import com.endchants.entity.CustomAoeCloudEntity;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
