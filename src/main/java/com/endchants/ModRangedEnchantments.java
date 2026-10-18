@@ -3,7 +3,9 @@ package com.endchants;
 import java.util.List;
 
 import com.endchants.enchantment.RangedItemType;
+import com.endchants.enchantment.ranged.ChainReactionEffect;
 
+import net.minecraft.advancements.criterion.DamageSourcePredicate;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -16,8 +18,11 @@ import net.minecraft.world.item.enchantment.ConditionalEffect;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
+import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect;
+import net.minecraft.world.level.storage.loot.predicates.AllOfCondition;
+import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 public class ModRangedEnchantments {
@@ -38,7 +43,8 @@ public class ModRangedEnchantments {
             RangedItemType itemType) {
         return builder(ctx, weight, levels, min, max, anvilCost, itemType)
                 .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
-                        EnchantmentTarget.VICTIM, effect);
+                        EnchantmentTarget.VICTIM, effect, DamageSourceCondition
+                                .hasDamageSource(DamageSourcePredicate.Builder.damageType().isDirect(false)));
     }
 
     public static <T extends EnchantmentValueEffect> Enchantment.Builder builder(
@@ -47,7 +53,8 @@ public class ModRangedEnchantments {
             DataComponentType<List<ConditionalEffect<T>>> when, T effect,
             LootItemCondition.Builder predicate, RangedItemType itemType) {
         return builder(ctx, weight, levels, min, max, anvilCost, itemType)
-                .withEffect(when, effect, predicate);
+                .withEffect(when, effect, AllOfCondition.allOf(predicate, DamageSourceCondition
+                        .hasDamageSource(DamageSourcePredicate.Builder.damageType().isDirect(false))));
     }
 
     public static <T extends EnchantmentValueEffect> Enchantment.Builder builder(
@@ -55,7 +62,8 @@ public class ModRangedEnchantments {
             Enchantment.Cost min, Enchantment.Cost max, int anvilCost,
             DataComponentType<List<ConditionalEffect<T>>> when, T effect, RangedItemType itemType) {
         return builder(ctx, weight, levels, min, max, anvilCost, itemType)
-                .withEffect(when, effect);
+                .withEffect(when, effect, DamageSourceCondition
+                        .hasDamageSource(DamageSourcePredicate.Builder.damageType().isDirect(false)));
     }
 
     public static Enchantment.Builder builder(BootstrapContext<Enchantment> ctx, int weight, int levels,
@@ -82,7 +90,10 @@ public class ModRangedEnchantments {
                         weight, levels, min, max, anvilCost, EquipmentSlotGroup.HAND));
     }
 
-    public static void init(BootstrapContext<Enchantment> ctx) {
+    public static final ResourceKey<Enchantment> CHAIN_REACTION = genKey("chain_reaction");
 
+    public static void init(BootstrapContext<Enchantment> ctx) {
+        register(ctx, CHAIN_REACTION, builder(ctx, 4, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(9, 5),
+                2, new ChainReactionEffect(LevelBasedValue.perLevel(.6f, .1f)), RangedItemType.ARROW_FIRING));
     }
 }

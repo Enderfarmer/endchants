@@ -3,6 +3,7 @@ package com.endchants;
 import com.endchants.entity.CustomAoeCloudEntity;
 import com.endchants.entity.EntityDims;
 import com.endchants.entity.ShockwaveEntity;
+import com.endchants.entity.ShortArrow;
 import com.endchants.entity.WhirlwindEntity;
 
 import net.minecraft.core.Registry;
@@ -22,6 +23,8 @@ public class ModEntities {
                                         .sized(6.0F, 0.5F).clientTrackingRange(10).updateInterval(Integer.MAX_VALUE));
         public static final EntityType<WhirlwindEntity> WHIRLWIND = register("whirlwind", new EntityDims(3, 1.5f),
                         WhirlwindEntity::new);
+        public static final EntityType<ShortArrow> SHORT_ARROW = register("short_arrow",
+                        new EntityDims(.5f, .5f), ShortArrow::new);
 
         public static <T extends Entity> EntityType<T> register(String name, EntityDims dimensions,
                         EntityType.EntityFactory<T> factory) {

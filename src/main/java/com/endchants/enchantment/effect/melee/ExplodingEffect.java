@@ -1,5 +1,6 @@
-package com.endchants.enchantment.effect;
+package com.endchants.enchantment.effect.melee;
 
+import com.endchants.enchantment.effect.EntityEffectBase;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.particles.ParticleTypes;
