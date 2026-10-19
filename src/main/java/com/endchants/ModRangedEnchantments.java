@@ -109,6 +109,7 @@ public class ModRangedEnchantments {
     public static final ResourceKey<Enchantment> CRITICAL_SHOT = genKey("critical_shot");
     public static final ResourceKey<Enchantment> POISON_CLOUD_RANGED = genKey("poison_cloud_ranged");
     public static final ResourceKey<Enchantment> GRAVITY_RANGED = genKey("gravity_ranged");
+    public static final ResourceKey<Enchantment> WEAKENING_RANGED = genKey("weakening_ranged");
 
     public static void init(BootstrapContext<Enchantment> ctx) {
         register(ctx, CHAIN_REACTION, builder(ctx, 4, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(9, 5),
@@ -141,5 +142,11 @@ public class ModRangedEnchantments {
                 RangedItemType.ARROW_FIRING));
         register(ctx, GRAVITY_RANGED, builder(ctx, 6, 1, Enchantment.dynamicCost(10, 6),
                 Enchantment.dynamicCost(15, 6), 5, new GravityEffect(0.4f), RangedItemType.ALL));
+        register(ctx, WEAKENING_RANGED, builder(ctx, 7, 3, Enchantment.dynamicCost(5, 4),
+                Enchantment.dynamicCost(8, 4), 4,
+                new CloudEffect(BuiltInRegistries.MOB_EFFECT
+                        .get(Identifier.withDefaultNamespace("weakness")).get(), 4, 1,
+                        LevelBasedValue.perLevel(100, 10), LevelBasedValue.perLevel(0, 1)),
+                RangedItemType.ARROW_FIRING));
     }
 }
