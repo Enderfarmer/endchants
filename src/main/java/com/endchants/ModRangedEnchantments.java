@@ -3,6 +3,7 @@ package com.endchants;
 import java.util.List;
 
 import com.endchants.enchantment.RangedItemType;
+import com.endchants.enchantment.effect.melee.ExplodingEffect;
 import com.endchants.enchantment.ranged.ChainReactionEffect;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 
@@ -97,6 +98,7 @@ public class ModRangedEnchantments {
 
     public static final ResourceKey<Enchantment> CHAIN_REACTION = genKey("chain_reaction");
     public static final ResourceKey<Enchantment> COMMITTED_RANGED = genKey("committed_ranged");
+    public static final ResourceKey<Enchantment> EXPLODING_RANGED = genKey("exploding_ranged");
 
     public static void init(BootstrapContext<Enchantment> ctx) {
         register(ctx, CHAIN_REACTION, builder(ctx, 4, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(9, 5),
@@ -112,6 +114,8 @@ public class ModRangedEnchantments {
 
                                 .subPredicate(new IsHurtPredicate())),
                 RangedItemType.ARROW_FIRING));
-
+        register(ctx, EXPLODING_RANGED, builder(ctx, 4, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(9, 5),
+                3,
+                new ExplodingEffect(LevelBasedValue.perLevel(0.1f)), RangedItemType.ALL));
     }
 }

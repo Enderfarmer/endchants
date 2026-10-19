@@ -1,0 +1,42 @@
+{
+  "anvil_cost": 3,
+  "description": {
+    "translate": "enchantment.endchants.exploding_ranged"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "endchants:exploding_effect",
+          "damage_percentage": {
+            "type": "minecraft:linear",
+            "base": 0.1,
+            "per_level_above_first": 0.1
+          }
+        },
+        "enchanted": "attacker",
+        "requirements": {
+          "condition": "minecraft:damage_source_properties",
+          "predicate": {
+            "is_direct": false
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 9,
+    "per_level_above_first": 5
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 7,
+    "per_level_above_first": 4
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#endchants:ranged_weapon",
+  "weight": 4
+}

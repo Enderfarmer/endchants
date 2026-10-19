@@ -6,6 +6,7 @@
 00c11fea13dd3e2e95b0cd6295752463366901cb data/endchants/enchantment/critical_hit.json
 ba21c2f63b349f46445b1a03b924027989020a89 data/endchants/enchantment/echo.json
 96f362064571212e8ffe3a93bbb81cb5133538cb data/endchants/enchantment/exploding.json
+dca90e2d2222415d58e747a2c63f3246f22edd04 data/endchants/enchantment/exploding_ranged.json
 308b85aca84e82437c91f9e51ced3b9dcd44df34 data/endchants/enchantment/flesh_eater.json
 03c91c8100f39900a10f381ce69259d600391d32 data/endchants/enchantment/freezing.json
 e2ece8a6358c141d00cee622516e231ac896119e data/endchants/enchantment/gravity.json
