@@ -6,6 +6,7 @@ import com.endchants.enchantment.RangedItemType;
 import com.endchants.enchantment.effect.melee.CloudEffect;
 import com.endchants.enchantment.effect.melee.CriticalHitEffect;
 import com.endchants.enchantment.effect.melee.ExplodingEffect;
+import com.endchants.enchantment.effect.melee.GravityEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
 import com.endchants.enchantment.ranged.ChainReactionEffect;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
@@ -107,6 +108,7 @@ public class ModRangedEnchantments {
     public static final ResourceKey<Enchantment> VOID_SHOT = genKey("void_shot");
     public static final ResourceKey<Enchantment> CRITICAL_SHOT = genKey("critical_shot");
     public static final ResourceKey<Enchantment> POISON_CLOUD_RANGED = genKey("poison_cloud_ranged");
+    public static final ResourceKey<Enchantment> GRAVITY_RANGED = genKey("gravity_ranged");
 
     public static void init(BootstrapContext<Enchantment> ctx) {
         register(ctx, CHAIN_REACTION, builder(ctx, 4, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(9, 5),
@@ -137,6 +139,7 @@ public class ModRangedEnchantments {
                         .get(Identifier.withDefaultNamespace("poison")).get(), 3, 0.3f,
                         LevelBasedValue.perLevel(70, 30), LevelBasedValue.perLevel(2)),
                 RangedItemType.ARROW_FIRING));
-
+        register(ctx, GRAVITY_RANGED, builder(ctx, 6, 1, Enchantment.dynamicCost(10, 6),
+                Enchantment.dynamicCost(15, 6), 5, new GravityEffect(0.4f), RangedItemType.ALL));
     }
 }
