@@ -1,7 +1,8 @@
 // 1.21.11	-999999999-01-01T00:00:00	Endchants/Enchantments
 466c7c6522dd865560d00c20c2c861481014a6d2 data/endchants/enchantment/backstabbing.json
-a147dc839e0fc838dccc20d9fb188a445065813e data/endchants/enchantment/chain_reaction.json
+6575030fae538cf8891f50ba87330f71c31c1810 data/endchants/enchantment/chain_reaction.json
 8a73e5f24ba8840dbbbc0a8cf7d511fabdc8e2cd data/endchants/enchantment/committed.json
+790d5c8621834dc935c54964a43c2f7bc22df408 data/endchants/enchantment/committed_ranged.json
 00c11fea13dd3e2e95b0cd6295752463366901cb data/endchants/enchantment/critical_hit.json
 ba21c2f63b349f46445b1a03b924027989020a89 data/endchants/enchantment/echo.json
 96f362064571212e8ffe3a93bbb81cb5133538cb data/endchants/enchantment/exploding.json

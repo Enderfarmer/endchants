@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.endchants.enchantment.RangedItemType;
 import com.endchants.enchantment.ranged.ChainReactionEffect;
+import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 
 import net.minecraft.advancements.criterion.DamageSourcePredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -19,11 +21,14 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
+import net.minecraft.world.item.enchantment.effects.AddValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.AllOfCondition;
 import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 
 public class ModRangedEnchantments {
     public static ResourceKey<Enchantment> register(BootstrapContext<Enchantment> ctx,
@@ -91,9 +96,22 @@ public class ModRangedEnchantments {
     }
 
     public static final ResourceKey<Enchantment> CHAIN_REACTION = genKey("chain_reaction");
+    public static final ResourceKey<Enchantment> COMMITTED_RANGED = genKey("committed_ranged");
 
     public static void init(BootstrapContext<Enchantment> ctx) {
         register(ctx, CHAIN_REACTION, builder(ctx, 4, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(9, 5),
-                2, new ChainReactionEffect(LevelBasedValue.perLevel(.2f, .1f)), RangedItemType.ARROW_FIRING));
+                2, new ChainReactionEffect(LevelBasedValue.perLevel(0.1f, 0.1f)),
+                RangedItemType.ARROW_FIRING));
+        register(ctx, COMMITTED_RANGED, builder(ctx, 6, 2, Enchantment.dynamicCost(8, 8),
+                Enchantment.dynamicCost(28, 8), 8,
+                EnchantmentEffectComponents.DAMAGE,
+                new AddValue(LevelBasedValue.perLevel(3.0F)),
+                LootItemEntityPropertyCondition.hasProperties(
+                        LootContext.EntityTarget.THIS,
+                        EntityPredicate.Builder.entity()
+
+                                .subPredicate(new IsHurtPredicate())),
+                RangedItemType.ARROW_FIRING));
+
     }
 }

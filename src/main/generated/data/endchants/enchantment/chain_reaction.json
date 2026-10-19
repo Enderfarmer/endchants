@@ -11,7 +11,7 @@
           "type": "endchants:chain_reaction_effect",
           "chance": {
             "type": "minecraft:linear",
-            "base": 0.6,
+            "base": 0.1,
             "per_level_above_first": 0.1
           }
         },
