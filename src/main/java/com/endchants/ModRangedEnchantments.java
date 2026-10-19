@@ -3,6 +3,7 @@ package com.endchants;
 import java.util.List;
 
 import com.endchants.enchantment.RangedItemType;
+import com.endchants.enchantment.effect.melee.CriticalHitEffect;
 import com.endchants.enchantment.effect.melee.ExplodingEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
 import com.endchants.enchantment.ranged.ChainReactionEffect;
@@ -101,6 +102,7 @@ public class ModRangedEnchantments {
     public static final ResourceKey<Enchantment> COMMITTED_RANGED = genKey("committed_ranged");
     public static final ResourceKey<Enchantment> EXPLODING_RANGED = genKey("exploding_ranged");
     public static final ResourceKey<Enchantment> VOID_SHOT = genKey("void_shot");
+    public static final ResourceKey<Enchantment> CRITICAL_SHOT = genKey("critical_shot");
 
     public static void init(BootstrapContext<Enchantment> ctx) {
         register(ctx, CHAIN_REACTION, builder(ctx, 4, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(9, 5),
@@ -122,6 +124,9 @@ public class ModRangedEnchantments {
         register(ctx, VOID_SHOT, builder(ctx, 4, 3, Enchantment.dynamicCost(10, 8),
                 Enchantment.dynamicCost(13, 8), 5,
                 new VoidedEffect(LevelBasedValue.perLevel(2.0f, 2.0f)), RangedItemType.ALL));
+        register(ctx, CRITICAL_SHOT,
+                builder(ctx, 5, 3, Enchantment.dynamicCost(8, 6), Enchantment.dynamicCost(10, 6),
+                        4, EnchantmentEffectComponents.DAMAGE, new CriticalHitEffect(), RangedItemType.ALL));
 
     }
 }
