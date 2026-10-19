@@ -29,6 +29,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.enchantment.ConditionalEffect;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -172,13 +173,11 @@ public class ModMeleeEnchantments {
                                                 5, new ShockwaveEffect(LevelBasedValue.perLevel(3, 2))));
                 register(ctx, POISON_CLOUD, builder(ctx, 8, 3, Enchantment.dynamicCost(4, 3),
                                 Enchantment.dynamicCost(7, 4), 2,
-                                new CloudEffect(BuiltInRegistries.MOB_EFFECT
-                                                .get(Identifier.withDefaultNamespace("poison")).get(), 3, 0.3f,
+                                new CloudEffect(MobEffects.POISON, 3, 0.3f,
                                                 LevelBasedValue.perLevel(70, 30), LevelBasedValue.perLevel(2))));
                 register(ctx, WEAKENING, builder(ctx, 7, 3, Enchantment.dynamicCost(5, 4),
                                 Enchantment.dynamicCost(8, 4), 4,
-                                new CloudEffect(BuiltInRegistries.MOB_EFFECT
-                                                .get(Identifier.withDefaultNamespace("weakness")).get(), 4, 1,
+                                new CloudEffect(MobEffects.WEAKNESS, 4, 1,
                                                 LevelBasedValue.perLevel(100, 10), LevelBasedValue.perLevel(0, 1))));
                 register(ctx, STUNNING,
                                 builder(ctx, 5, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(10, 5),

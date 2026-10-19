@@ -1,0 +1,37 @@
+{
+  "anvil_cost": 3,
+  "description": {
+    "translate": "enchantment.endchants.tempo_theft"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "endchants:tempo_theft"
+        },
+        "enchanted": "attacker",
+        "requirements": {
+          "condition": "minecraft:damage_source_properties",
+          "predicate": {
+            "is_direct": false
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 20,
+    "per_level_above_first": 5
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 15,
+    "per_level_above_first": 4
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#endchants:arrow_firing",
+  "weight": 4
+}

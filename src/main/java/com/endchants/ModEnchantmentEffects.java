@@ -16,6 +16,7 @@ import com.endchants.enchantment.effect.melee.ShockwaveEffect;
 import com.endchants.enchantment.effect.melee.StunningEffect;
 import com.endchants.enchantment.effect.melee.SwirlingEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
+import com.endchants.enchantment.effect.ranged.TempoTheftEffect;
 import com.endchants.enchantment.ranged.ChainReactionEffect;
 import com.mojang.serialization.MapCodec;
 
@@ -51,6 +52,7 @@ public class ModEnchantmentEffects {
         public static MapCodec<ExplodingEffect> EXPLODING_EFFECT = register("exploding_effect", ExplodingEffect.CODEC);
         public static MapCodec<ChainReactionEffect> CHAIN_REACTION_EFFECT = register("chain_reaction_effect",
                         ChainReactionEffect.CODEC);
+        public static MapCodec<TempoTheftEffect> TEMPO_THEFT_EFFECT = register("tempo_theft", TempoTheftEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
