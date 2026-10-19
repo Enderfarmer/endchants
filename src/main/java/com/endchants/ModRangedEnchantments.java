@@ -14,10 +14,12 @@ import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 
 import net.minecraft.advancements.criterion.DamageSourcePredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.EntityTypePredicate;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffects;
@@ -32,6 +34,7 @@ import net.minecraft.world.item.enchantment.effects.AddValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 import net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootContext.EntityTarget;
 import net.minecraft.world.level.storage.loot.predicates.AllOfCondition;
 import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -114,6 +117,7 @@ public class ModRangedEnchantments {
         public static final ResourceKey<Enchantment> GRAVITY_RANGED = genKey("gravity_ranged");
         public static final ResourceKey<Enchantment> WEAKENING_RANGED = genKey("weakening_ranged");
         public static final ResourceKey<Enchantment> TEMPO_THEFT = genKey("tempo_theft");
+        public static final ResourceKey<Enchantment> SMITING_RANGED = genKey("smiting_ranged");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, CHAIN_REACTION,
@@ -157,5 +161,15 @@ public class ModRangedEnchantments {
                 register(ctx, TEMPO_THEFT,
                                 builder(ctx, 4, 2, Enchantment.dynamicCost(15, 4), Enchantment.dynamicCost(20, 5), 3,
                                                 new TempoTheftEffect(), RangedItemType.ARROW_FIRING));
+                register(ctx, SMITING_RANGED, builder(ctx, 7, 5, Enchantment.dynamicCost(5, 3),
+                                Enchantment.dynamicCost(7, 5), 2, EnchantmentEffectComponents.DAMAGE,
+                                new AddValue(LevelBasedValue.perLevel(2.5F)),
+                                LootItemEntityPropertyCondition.hasProperties(EntityTarget.THIS,
+                                                net.minecraft.advancements.criterion.EntityPredicate.Builder.entity()
+                                                                .entityType(EntityTypePredicate.of(
+                                                                                ctx.lookup(Registries.ENTITY_TYPE),
+                                                                                EntityTypeTags.SENSITIVE_TO_SMITE))),
+                                RangedItemType.ARROW_FIRING));
+
         }
 }
