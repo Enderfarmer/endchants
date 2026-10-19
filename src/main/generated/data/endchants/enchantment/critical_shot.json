@@ -1,0 +1,35 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.endchants.critical_shot"
+  },
+  "effects": {
+    "minecraft:damage": [
+      {
+        "effect": {
+          "type": "endchants:critical_hit_effect"
+        },
+        "requirements": {
+          "condition": "minecraft:damage_source_properties",
+          "predicate": {
+            "is_direct": false
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 10,
+    "per_level_above_first": 6
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 8,
+    "per_level_above_first": 6
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#endchants:ranged_weapon",
+  "weight": 5
+}

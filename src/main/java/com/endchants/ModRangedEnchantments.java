@@ -3,6 +3,7 @@ package com.endchants;
 import java.util.List;
 
 import com.endchants.enchantment.RangedItemType;
+import com.endchants.enchantment.effect.melee.CloudEffect;
 import com.endchants.enchantment.effect.melee.CriticalHitEffect;
 import com.endchants.enchantment.effect.melee.ExplodingEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
@@ -12,8 +13,10 @@ import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 import net.minecraft.advancements.criterion.DamageSourcePredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -103,6 +106,7 @@ public class ModRangedEnchantments {
     public static final ResourceKey<Enchantment> EXPLODING_RANGED = genKey("exploding_ranged");
     public static final ResourceKey<Enchantment> VOID_SHOT = genKey("void_shot");
     public static final ResourceKey<Enchantment> CRITICAL_SHOT = genKey("critical_shot");
+    public static final ResourceKey<Enchantment> POISON_CLOUD_RANGED = genKey("poison_cloud_ranged");
 
     public static void init(BootstrapContext<Enchantment> ctx) {
         register(ctx, CHAIN_REACTION, builder(ctx, 4, 3, Enchantment.dynamicCost(7, 4), Enchantment.dynamicCost(9, 5),
@@ -127,6 +131,12 @@ public class ModRangedEnchantments {
         register(ctx, CRITICAL_SHOT,
                 builder(ctx, 5, 3, Enchantment.dynamicCost(8, 6), Enchantment.dynamicCost(10, 6),
                         4, EnchantmentEffectComponents.DAMAGE, new CriticalHitEffect(), RangedItemType.ALL));
+        register(ctx, POISON_CLOUD_RANGED, builder(ctx, 8, 3, Enchantment.dynamicCost(4, 3),
+                Enchantment.dynamicCost(7, 4), 2,
+                new CloudEffect(BuiltInRegistries.MOB_EFFECT
+                        .get(Identifier.withDefaultNamespace("poison")).get(), 3, 0.3f,
+                        LevelBasedValue.perLevel(70, 30), LevelBasedValue.perLevel(2)),
+                RangedItemType.ARROW_FIRING));
 
     }
 }
