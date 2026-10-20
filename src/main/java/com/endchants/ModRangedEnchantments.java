@@ -10,6 +10,7 @@ import com.endchants.enchantment.effect.melee.GravityEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
 import com.endchants.enchantment.effect.ranged.ChainReactionEffect;
 import com.endchants.enchantment.effect.ranged.FuseShotEffect;
+import com.endchants.enchantment.effect.ranged.LevishotEffect;
 import com.endchants.enchantment.effect.ranged.TempoTheftEffect;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 
@@ -62,6 +63,14 @@ public class ModRangedEnchantments {
                                                 EnchantmentTarget.VICTIM, effect, DamageSourceCondition
                                                                 .hasDamageSource(DamageSourcePredicate.Builder
                                                                                 .damageType().isDirect(false)));
+        }
+
+        public static Enchantment.Builder projectileEffectBuilder(BootstrapContext<Enchantment> ctx, int weight,
+                        int levels,
+                        Enchantment.Cost min, Enchantment.Cost max, int anvilCost, EnchantmentEntityEffect effect,
+                        RangedItemType itemType) {
+                return builder(ctx, weight, levels, min, max, anvilCost, itemType)
+                                .withEffect(EnchantmentEffectComponents.PROJECTILE_SPAWNED, effect);
         }
 
         public static <T extends EnchantmentValueEffect> Enchantment.Builder builder(
@@ -120,6 +129,7 @@ public class ModRangedEnchantments {
         public static final ResourceKey<Enchantment> TEMPO_THEFT = genKey("tempo_theft");
         public static final ResourceKey<Enchantment> SMITING_RANGED = genKey("smiting_ranged");
         public static final ResourceKey<Enchantment> FUSE_SHOT = genKey("fuse_shot");
+        public static final ResourceKey<Enchantment> LEVISHOT = genKey("levitation_shot");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, CHAIN_REACTION,
@@ -172,10 +182,15 @@ public class ModRangedEnchantments {
                                                                                 ctx.lookup(Registries.ENTITY_TYPE),
                                                                                 EntityTypeTags.SENSITIVE_TO_SMITE))),
                                 RangedItemType.ARROW_FIRING));
-                register(ctx, FUSE_SHOT, builder(ctx, 5, 3, Enchantment.dynamicCost(9, 3),
-                                Enchantment.dynamicCost(13, 5), 3, RangedItemType.ARROW_FIRING).withEffect(
-                                                EnchantmentEffectComponents.PROJECTILE_SPAWNED,
-                                                new FuseShotEffect(LevelBasedValue.perLevel(5, -1))));
+                register(ctx, FUSE_SHOT, projectileEffectBuilder(ctx, 5, 3, Enchantment.dynamicCost(9, 3),
+                                Enchantment.dynamicCost(13, 5), 3, new FuseShotEffect(LevelBasedValue.perLevel(5, -1)),
+                                RangedItemType.ARROW_FIRING));
+                register(ctx, LEVISHOT,
+                                projectileEffectBuilder(ctx, 5, 3, Enchantment.dynamicCost(12, 5),
+                                                Enchantment.dynamicCost(14, 5), 3,
+                                                new LevishotEffect(LevelBasedValue.perLevel(.1f, 0.05f),
+                                                                LevelBasedValue.perLevel(3, 1)),
+                                                RangedItemType.ARROW_FIRING));
 
         }
 }

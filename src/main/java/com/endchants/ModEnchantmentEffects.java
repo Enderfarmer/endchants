@@ -18,6 +18,7 @@ import com.endchants.enchantment.effect.melee.SwirlingEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
 import com.endchants.enchantment.effect.ranged.ChainReactionEffect;
 import com.endchants.enchantment.effect.ranged.FuseShotEffect;
+import com.endchants.enchantment.effect.ranged.LevishotEffect;
 import com.endchants.enchantment.effect.ranged.TempoTheftEffect;
 import com.mojang.serialization.MapCodec;
 
@@ -55,6 +56,7 @@ public class ModEnchantmentEffects {
                         ChainReactionEffect.CODEC);
         public static MapCodec<TempoTheftEffect> TEMPO_THEFT_EFFECT = register("tempo_theft", TempoTheftEffect.CODEC);
         public static MapCodec<FuseShotEffect> FUSE_SHOT_EFFECT = register("fuse_shot_effect", FuseShotEffect.CODEC);
+        public static MapCodec<LevishotEffect> LEVISHOT_EFFECT = register("levishot_effect", LevishotEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
