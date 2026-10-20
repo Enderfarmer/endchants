@@ -1,0 +1,38 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.endchants.radiance_shot"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "endchants:radiance_effect",
+          "levelCoef": 1
+        },
+        "enchanted": "attacker",
+        "requirements": {
+          "condition": "minecraft:damage_source_properties",
+          "predicate": {
+            "is_direct": false
+          }
+        }
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 28,
+    "per_level_above_first": 8
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 8,
+    "per_level_above_first": 8
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#endchants:arrow_firing",
+  "weight": 6
+}

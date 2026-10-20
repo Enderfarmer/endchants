@@ -7,6 +7,7 @@ import com.endchants.enchantment.effect.melee.CloudEffect;
 import com.endchants.enchantment.effect.melee.CriticalHitEffect;
 import com.endchants.enchantment.effect.melee.ExplodingEffect;
 import com.endchants.enchantment.effect.melee.GravityEffect;
+import com.endchants.enchantment.effect.melee.RadianceEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
 import com.endchants.enchantment.effect.ranged.ChainReactionEffect;
 import com.endchants.enchantment.effect.ranged.FuseShotEffect;
@@ -130,6 +131,7 @@ public class ModRangedEnchantments {
         public static final ResourceKey<Enchantment> SMITING_RANGED = genKey("smiting_ranged");
         public static final ResourceKey<Enchantment> FUSE_SHOT = genKey("fuse_shot");
         public static final ResourceKey<Enchantment> LEVISHOT = genKey("levitation_shot");
+        public static final ResourceKey<Enchantment> RADIANCE_SHOT = genKey("radiance_shot");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, CHAIN_REACTION,
@@ -191,6 +193,9 @@ public class ModRangedEnchantments {
                                                 new LevishotEffect(LevelBasedValue.perLevel(.1f, 0.05f),
                                                                 LevelBasedValue.perLevel(3, 1)),
                                                 RangedItemType.ARROW_FIRING));
+                register(ctx, RADIANCE_SHOT,
+                                builder(ctx, 6, 2, Enchantment.dynamicCost(8, 8), Enchantment.dynamicCost(28,
+                                                8), 8, new RadianceEffect(1), RangedItemType.ARROW_FIRING));
 
         }
 }
