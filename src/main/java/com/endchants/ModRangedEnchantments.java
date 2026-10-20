@@ -9,6 +9,7 @@ import com.endchants.enchantment.effect.melee.ExplodingEffect;
 import com.endchants.enchantment.effect.melee.GravityEffect;
 import com.endchants.enchantment.effect.melee.RadianceEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
+import com.endchants.enchantment.effect.ranged.BonusShotEffect;
 import com.endchants.enchantment.effect.ranged.ChainReactionEffect;
 import com.endchants.enchantment.effect.ranged.FuseShotEffect;
 import com.endchants.enchantment.effect.ranged.LevishotEffect;
@@ -134,6 +135,7 @@ public class ModRangedEnchantments {
         public static final ResourceKey<Enchantment> LEVISHOT = genKey("levitation_shot");
         public static final ResourceKey<Enchantment> RADIANCE_SHOT = genKey("radiance_shot");
         public static final ResourceKey<Enchantment> RICOCHET = genKey("ricochet");
+        public static final ResourceKey<Enchantment> BONUS_SHOT = genKey("bonus_shot");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, CHAIN_REACTION,
@@ -202,6 +204,8 @@ public class ModRangedEnchantments {
                                 builder(ctx, 4, 3, Enchantment.dynamicCost(5, 2), Enchantment.dynamicCost(7, 3), 3,
                                                 new RicochetEffect(LevelBasedValue.perLevel(.2f, .1f)),
                                                 RangedItemType.ARROW_FIRING));
+                register(ctx, BONUS_SHOT, projectileEffectBuilder(ctx, 4, 1, Enchantment.dynamicCost(7, 3),
+                                Enchantment.dynamicCost(10, 4), 2, new BonusShotEffect(), RangedItemType.ARROW_FIRING));
 
         }
 }

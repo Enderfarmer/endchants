@@ -16,6 +16,7 @@ import com.endchants.enchantment.effect.melee.ShockwaveEffect;
 import com.endchants.enchantment.effect.melee.StunningEffect;
 import com.endchants.enchantment.effect.melee.SwirlingEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
+import com.endchants.enchantment.effect.ranged.BonusShotEffect;
 import com.endchants.enchantment.effect.ranged.ChainReactionEffect;
 import com.endchants.enchantment.effect.ranged.FuseShotEffect;
 import com.endchants.enchantment.effect.ranged.LevishotEffect;
@@ -59,6 +60,8 @@ public class ModEnchantmentEffects {
         public static MapCodec<FuseShotEffect> FUSE_SHOT_EFFECT = register("fuse_shot_effect", FuseShotEffect.CODEC);
         public static MapCodec<LevishotEffect> LEVISHOT_EFFECT = register("levishot_effect", LevishotEffect.CODEC);
         public static MapCodec<RicochetEffect> RICOCHET_EFFFECT = register("ricochet_effect", RicochetEffect.CODEC);
+        public static MapCodec<BonusShotEffect> BONUS_SHOT_EFFECT = register("bonus_shot_effect",
+                        BonusShotEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
