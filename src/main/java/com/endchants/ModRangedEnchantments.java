@@ -8,8 +8,9 @@ import com.endchants.enchantment.effect.melee.CriticalHitEffect;
 import com.endchants.enchantment.effect.melee.ExplodingEffect;
 import com.endchants.enchantment.effect.melee.GravityEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
+import com.endchants.enchantment.effect.ranged.ChainReactionEffect;
+import com.endchants.enchantment.effect.ranged.FuseShotEffect;
 import com.endchants.enchantment.effect.ranged.TempoTheftEffect;
-import com.endchants.enchantment.ranged.ChainReactionEffect;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 
 import net.minecraft.advancements.criterion.DamageSourcePredicate;
@@ -118,6 +119,7 @@ public class ModRangedEnchantments {
         public static final ResourceKey<Enchantment> WEAKENING_RANGED = genKey("weakening_ranged");
         public static final ResourceKey<Enchantment> TEMPO_THEFT = genKey("tempo_theft");
         public static final ResourceKey<Enchantment> SMITING_RANGED = genKey("smiting_ranged");
+        public static final ResourceKey<Enchantment> FUSE_SHOT = genKey("fuse_shot");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, CHAIN_REACTION,
@@ -170,6 +172,10 @@ public class ModRangedEnchantments {
                                                                                 ctx.lookup(Registries.ENTITY_TYPE),
                                                                                 EntityTypeTags.SENSITIVE_TO_SMITE))),
                                 RangedItemType.ARROW_FIRING));
+                register(ctx, FUSE_SHOT, builder(ctx, 5, 3, Enchantment.dynamicCost(9, 3),
+                                Enchantment.dynamicCost(13, 5), 3, RangedItemType.ARROW_FIRING).withEffect(
+                                                EnchantmentEffectComponents.PROJECTILE_SPAWNED,
+                                                new FuseShotEffect(LevelBasedValue.perLevel(5, -1))));
 
         }
 }

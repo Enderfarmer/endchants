@@ -13,6 +13,8 @@ import net.minecraft.world.entity.LivingEntity;
 public class VoidedMixin implements LivingEntityMixinInterface {
     @Unique
     float voidedCoef = 1;
+    @Unique
+    int shotNumber = 0;
 
     @Override
     public float endchants$getVoidedEff() {
@@ -34,4 +36,14 @@ public class VoidedMixin implements LivingEntityMixinInterface {
         return amount * voidedCoef;
     }
 
+    @Override
+    public float endchants$getShotNumber() {
+        return shotNumber;
+    }
+
+    @Override
+    public void endchants$incrementShotNumber(int max) {
+        shotNumber = (shotNumber + 1) % max;
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.endchants.enchantment.ranged;
+package com.endchants.enchantment.effect.ranged;
 
 import com.endchants.ModEntities;
 import com.endchants.enchantment.effect.EntityEffectBase;

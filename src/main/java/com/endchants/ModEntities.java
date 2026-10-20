@@ -2,6 +2,7 @@ package com.endchants;
 
 import com.endchants.entity.CustomAoeCloudEntity;
 import com.endchants.entity.EntityDims;
+import com.endchants.entity.ExplosiveArrow;
 import com.endchants.entity.ShockwaveEntity;
 import com.endchants.entity.ShortArrow;
 import com.endchants.entity.WhirlwindEntity;
@@ -25,6 +26,8 @@ public class ModEntities {
                         WhirlwindEntity::new);
         public static final EntityType<ShortArrow> SHORT_ARROW = register("short_arrow",
                         new EntityDims(.5f, .5f), ShortArrow::new);
+        public static final EntityType<ExplosiveArrow> EXPLOSIVE_ARROW = register("explosive_arrow",
+                        new EntityDims(.5f, .5f), ExplosiveArrow::new);
 
         public static <T extends Entity> EntityType<T> register(String name, EntityDims dimensions,
                         EntityType.EntityFactory<T> factory) {
