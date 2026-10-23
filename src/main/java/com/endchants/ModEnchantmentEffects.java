@@ -22,6 +22,7 @@ import com.endchants.enchantment.effect.ranged.FuseShotEffect;
 import com.endchants.enchantment.effect.ranged.LevishotEffect;
 import com.endchants.enchantment.effect.ranged.RicochetEffect;
 import com.endchants.enchantment.effect.ranged.TempoTheftEffect;
+import com.endchants.enchantment.effect.ranged.WildRageEffect;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.Registry;
@@ -62,6 +63,7 @@ public class ModEnchantmentEffects {
         public static MapCodec<RicochetEffect> RICOCHET_EFFFECT = register("ricochet_effect", RicochetEffect.CODEC);
         public static MapCodec<BonusShotEffect> BONUS_SHOT_EFFECT = register("bonus_shot_effect",
                         BonusShotEffect.CODEC);
+        public static MapCodec<WildRageEffect> WILD_RAGE_EFFECT = register("wild_rage_effect", WildRageEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,

@@ -3,6 +3,7 @@ package com.endchants;
 import com.endchants.effects.Radiance;
 import com.endchants.effects.Rampaging;
 import com.endchants.effects.Stunned;
+import com.endchants.effects.WildRage;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -19,6 +20,8 @@ public class ModEffects {
                         new Rampaging());
         public static final Holder<MobEffect> STUNNED = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,
                         Endchants.id("stunned"), new Stunned());
+        public static final Holder<MobEffect> WILD_RAGE = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,
+                        Endchants.id("wild_rage"), new WildRage());
 
         public static void registerEffects() {
 

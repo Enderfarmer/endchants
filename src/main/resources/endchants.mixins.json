@@ -2,7 +2,13 @@
     "required": true,
     "package": "com.endchants.mixin",
     "compatibilityLevel": "JAVA_21",
-    "mixins": ["PlayerMixin", "VoidedMixin", "CustomAoeCloudMixin"],
+    "mixins": [
+        "PlayerMixin",
+        "VoidedMixin",
+        "CustomAoeCloudMixin",
+        "MobAccessor",
+        "WildRageMixin"
+    ],
     "injectors": {
         "defaultRequire": 1
     },

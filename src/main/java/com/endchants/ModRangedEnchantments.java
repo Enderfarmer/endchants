@@ -15,6 +15,7 @@ import com.endchants.enchantment.effect.ranged.FuseShotEffect;
 import com.endchants.enchantment.effect.ranged.LevishotEffect;
 import com.endchants.enchantment.effect.ranged.RicochetEffect;
 import com.endchants.enchantment.effect.ranged.TempoTheftEffect;
+import com.endchants.enchantment.effect.ranged.WildRageEffect;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 
 import net.minecraft.advancements.criterion.DamageSourcePredicate;
@@ -136,6 +137,7 @@ public class ModRangedEnchantments {
         public static final ResourceKey<Enchantment> RADIANCE_SHOT = genKey("radiance_shot");
         public static final ResourceKey<Enchantment> RICOCHET = genKey("ricochet");
         public static final ResourceKey<Enchantment> BONUS_SHOT = genKey("bonus_shot");
+        public static final ResourceKey<Enchantment> WILD_RAGE = genKey("wild_rage");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, CHAIN_REACTION,
@@ -206,6 +208,10 @@ public class ModRangedEnchantments {
                                                 RangedItemType.ARROW_FIRING));
                 register(ctx, BONUS_SHOT, projectileEffectBuilder(ctx, 4, 1, Enchantment.dynamicCost(7, 3),
                                 Enchantment.dynamicCost(10, 4), 2, new BonusShotEffect(), RangedItemType.ARROW_FIRING));
+                register(ctx, WILD_RAGE, builder(ctx, 4, 3, Enchantment.dynamicCost(7, 3),
+                                Enchantment.dynamicCost(10, 4), 2,
+                                new WildRageEffect(LevelBasedValue.perLevel(0.05f)),
+                                RangedItemType.ARROW_FIRING));
 
         }
 }
