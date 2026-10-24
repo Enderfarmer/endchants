@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.endchants.enchantment.effect.RepellingEffect;
 import com.endchants.enchantment.effect.armor.GravityPulseEffect;
+import com.endchants.enchantment.effect.armor.RushEffect;
 
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -49,6 +50,7 @@ public class ModArmorEnchantments {
 
         public static ResourceKey<Enchantment> REPELLING = genKey("repelling");
         public static ResourceKey<Enchantment> GRAVITY_PULSE = genKey("gravity_pulse");
+        public static ResourceKey<Enchantment> RUSH = genKey("rush");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, REPELLING,
@@ -59,6 +61,10 @@ public class ModArmorEnchantments {
                                 builder(ctx, 4, 1, Enchantment.dynamicCost(7, 2), Enchantment.dynamicCost(9, 3), 2)
                                                 .withEffect(EnchantmentEffectComponents.TICK,
                                                                 new GravityPulseEffect(0.005)));
+                register(ctx, RUSH,
+                                builder(ctx, 6, 3, Enchantment.dynamicCost(10, 2), Enchantment.dynamicCost(12, 3), 3,
+                                                EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.VICTIM,
+                                                new RushEffect()));
 
         }
 }
