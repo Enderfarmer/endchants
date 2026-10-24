@@ -1,6 +1,7 @@
 package com.endchants;
 
 import com.endchants.enchantment.effect.RepellingEffect;
+import com.endchants.enchantment.effect.armor.GravityPulseEffect;
 import com.endchants.enchantment.effect.melee.BackstabbingEffect;
 import com.endchants.enchantment.effect.melee.BuffOnKillEffect;
 import com.endchants.enchantment.effect.melee.CloudEffect;
@@ -64,6 +65,8 @@ public class ModEnchantmentEffects {
         public static MapCodec<BonusShotEffect> BONUS_SHOT_EFFECT = register("bonus_shot_effect",
                         BonusShotEffect.CODEC);
         public static MapCodec<WildRageEffect> WILD_RAGE_EFFECT = register("wild_rage_effect", WildRageEffect.CODEC);
+        public static MapCodec<GravityPulseEffect> GRAVITY_PULSE_EFFECT = register("gravity_pulse_effect",
+                        GravityPulseEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
