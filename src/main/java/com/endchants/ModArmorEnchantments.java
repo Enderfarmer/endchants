@@ -3,6 +3,7 @@ package com.endchants;
 import java.util.List;
 
 import com.endchants.enchantment.effect.RepellingEffect;
+import com.endchants.enchantment.effect.armor.BurningEffect;
 import com.endchants.enchantment.effect.armor.ChillingEffect;
 import com.endchants.enchantment.effect.armor.GravityPulseEffect;
 import com.endchants.enchantment.effect.armor.RushEffect;
@@ -54,6 +55,7 @@ public class ModArmorEnchantments {
         public static ResourceKey<Enchantment> GRAVITY_PULSE = genKey("gravity_pulse");
         public static ResourceKey<Enchantment> RUSH = genKey("rush");
         public static ResourceKey<Enchantment> CHILLING = genKey("chilling");
+        public static ResourceKey<Enchantment> BURNING = genKey("burning");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, REPELLING,
@@ -72,6 +74,10 @@ public class ModArmorEnchantments {
                                 builder(ctx, 4, 3, Enchantment.dynamicCost(8, 3), Enchantment.dynamicCost(11, 5), 5)
                                                 .withEffect(EnchantmentEffectComponents.TICK,
                                                                 new ChillingEffect(LevelBasedValue.perLevel(100f))));
+                register(ctx, BURNING,
+                                builder(ctx, 6, 3, Enchantment.dynamicCost(5, 1), Enchantment.dynamicCost(7, 2), 1)
+                                                .withEffect(EnchantmentEffectComponents.TICK,
+                                                                new BurningEffect(LevelBasedValue.perLevel(1, .5f))));
 
         }
 }

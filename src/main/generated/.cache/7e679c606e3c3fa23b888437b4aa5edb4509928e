@@ -1,6 +1,7 @@
 // 1.21.11	-999999999-01-01T00:00:00	Endchants/Enchantments
 466c7c6522dd865560d00c20c2c861481014a6d2 data/endchants/enchantment/backstabbing.json
 667f8506ffbf7c022257e337ebf1d31af816ded1 data/endchants/enchantment/bonus_shot.json
+4cdf831089213006c754d2dd6917d569b0832c65 data/endchants/enchantment/burning.json
 6575030fae538cf8891f50ba87330f71c31c1810 data/endchants/enchantment/chain_reaction.json
 37f351dd97a770b88b50f8060bbb12618c598315 data/endchants/enchantment/chilling.json
 8a73e5f24ba8840dbbbc0a8cf7d511fabdc8e2cd data/endchants/enchantment/committed.json
