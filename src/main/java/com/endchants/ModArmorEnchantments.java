@@ -7,14 +7,18 @@ import com.endchants.enchantment.effect.armor.BuffByHealth;
 import com.endchants.enchantment.effect.armor.BurningEffect;
 import com.endchants.enchantment.effect.armor.ChillingEffect;
 import com.endchants.enchantment.effect.armor.GravityPulseEffect;
+import com.endchants.enchantment.effect.armor.RecyclingEffect;
 import com.endchants.enchantment.effect.armor.RushEffect;
 
+import net.minecraft.advancements.criterion.DamageSourcePredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
@@ -22,6 +26,7 @@ import net.minecraft.world.item.enchantment.EnchantmentTarget;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.TargetedConditionalEffect;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
+import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
 
 public class ModArmorEnchantments {
         public static ResourceKey<Enchantment> register(BootstrapContext<Enchantment> ctx,
@@ -60,6 +65,7 @@ public class ModArmorEnchantments {
         public static ResourceKey<Enchantment> BURNING = genKey("burning");
         public static ResourceKey<Enchantment> COWARDICE = genKey("cowardice");
         public static ResourceKey<Enchantment> FRENZIED = genKey("frenzied");
+        public static ResourceKey<Enchantment> RECYCLING = genKey("recycling");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, REPELLING,
@@ -90,6 +96,27 @@ public class ModArmorEnchantments {
                                 builder(ctx, 5, 2, Enchantment.dynamicCost(5, 1), Enchantment.dynamicCost(7, 2), 1)
                                                 .withEffect(EnchantmentEffectComponents.TICK,
                                                                 new BuffByHealth(.5f, false, MobEffects.STRENGTH)));
+                register(ctx, RECYCLING,
+                                builder(ctx, 4, 3, Enchantment.dynamicCost(5, 1), Enchantment.dynamicCost(7, 2), 3)
+                                                .withEffect(EnchantmentEffectComponents.POST_ATTACK,
+                                                                EnchantmentTarget.VICTIM,
+                                                                EnchantmentTarget.VICTIM,
+                                                                new RecyclingEffect(LevelBasedValue.perLevel(5, 2)),
+
+                                                                DamageSourceCondition.hasDamageSource(
+                                                                                DamageSourcePredicate.Builder
+                                                                                                .damageType()
+                                                                                                .isDirect(false)
+                                                                                                .direct(EntityPredicate.Builder
+                                                                                                                .entity()
+                                                                                                                .of(ctx.lookup(Registries.ENTITY_TYPE),
+                                                                                                                                EntityType.ARROW)) // Must
+                                                                                                                                                   // be
+                                                                                                                                                   // specifically
+                                                                                                                                                   // a
+                                                                                                                                                   // vanilla
+                                                                                                                                                   // arrow
+                                                                )));
 
         }
 }

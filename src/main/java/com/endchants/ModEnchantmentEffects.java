@@ -5,6 +5,7 @@ import com.endchants.enchantment.effect.armor.BuffByHealth;
 import com.endchants.enchantment.effect.armor.BurningEffect;
 import com.endchants.enchantment.effect.armor.ChillingEffect;
 import com.endchants.enchantment.effect.armor.GravityPulseEffect;
+import com.endchants.enchantment.effect.armor.RecyclingEffect;
 import com.endchants.enchantment.effect.armor.RushEffect;
 import com.endchants.enchantment.effect.melee.BackstabbingEffect;
 import com.endchants.enchantment.effect.melee.BuffOnKillEffect;
@@ -76,6 +77,7 @@ public class ModEnchantmentEffects {
         public static MapCodec<BurningEffect> BURNING_EFFECT = register("burning_effect", BurningEffect.CODEC);
         public static MapCodec<BuffByHealth> BUFF_BY_HEALTH_EFFECT = register("buff_by_health_effect",
                         BuffByHealth.CODEC);
+        public static MapCodec<RecyclingEffect> RECYCLING_EFFECT = register("recycling_effect", RecyclingEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
