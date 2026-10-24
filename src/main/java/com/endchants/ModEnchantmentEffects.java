@@ -7,6 +7,7 @@ import com.endchants.enchantment.effect.armor.ChillingEffect;
 import com.endchants.enchantment.effect.armor.GravityPulseEffect;
 import com.endchants.enchantment.effect.armor.RecyclingEffect;
 import com.endchants.enchantment.effect.armor.RushEffect;
+import com.endchants.enchantment.effect.armor.SnowballEffect;
 import com.endchants.enchantment.effect.melee.BackstabbingEffect;
 import com.endchants.enchantment.effect.melee.BuffOnKillEffect;
 import com.endchants.enchantment.effect.melee.CloudEffect;
@@ -78,6 +79,7 @@ public class ModEnchantmentEffects {
         public static MapCodec<BuffByHealth> BUFF_BY_HEALTH_EFFECT = register("buff_by_health_effect",
                         BuffByHealth.CODEC);
         public static MapCodec<RecyclingEffect> RECYCLING_EFFECT = register("recycling_effect", RecyclingEffect.CODEC);
+        public static MapCodec<SnowballEffect> SNOWBALL_EFFECT = register("snowball_effect", SnowballEffect.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,

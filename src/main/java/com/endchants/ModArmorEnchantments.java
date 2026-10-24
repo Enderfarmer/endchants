@@ -9,6 +9,7 @@ import com.endchants.enchantment.effect.armor.ChillingEffect;
 import com.endchants.enchantment.effect.armor.GravityPulseEffect;
 import com.endchants.enchantment.effect.armor.RecyclingEffect;
 import com.endchants.enchantment.effect.armor.RushEffect;
+import com.endchants.enchantment.effect.armor.SnowballEffect;
 
 import net.minecraft.advancements.criterion.DamageSourcePredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
@@ -66,6 +67,7 @@ public class ModArmorEnchantments {
         public static ResourceKey<Enchantment> COWARDICE = genKey("cowardice");
         public static ResourceKey<Enchantment> FRENZIED = genKey("frenzied");
         public static ResourceKey<Enchantment> RECYCLING = genKey("recycling");
+        public static ResourceKey<Enchantment> SNOWBALL = genKey("snowball");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, REPELLING,
@@ -117,6 +119,10 @@ public class ModArmorEnchantments {
                                                                                                                                                    // vanilla
                                                                                                                                                    // arrow
                                                                 )));
+                register(ctx, SNOWBALL,
+                                builder(ctx, 4, 3, Enchantment.dynamicCost(8, 3), Enchantment.dynamicCost(11, 5), 5)
+                                                .withEffect(EnchantmentEffectComponents.TICK,
+                                                                new SnowballEffect(LevelBasedValue.perLevel(60, -20))));
 
         }
 }
