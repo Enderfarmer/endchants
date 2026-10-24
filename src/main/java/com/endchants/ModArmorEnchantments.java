@@ -59,6 +59,7 @@ public class ModArmorEnchantments {
         public static ResourceKey<Enchantment> CHILLING = genKey("chilling");
         public static ResourceKey<Enchantment> BURNING = genKey("burning");
         public static ResourceKey<Enchantment> COWARDICE = genKey("cowardice");
+        public static ResourceKey<Enchantment> FRENZIED = genKey("frenzied");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, REPELLING,
@@ -85,6 +86,10 @@ public class ModArmorEnchantments {
                                 builder(ctx, 5, 2, Enchantment.dynamicCost(5, 1), Enchantment.dynamicCost(7, 2), 1)
                                                 .withEffect(EnchantmentEffectComponents.TICK,
                                                                 new BuffByHealth(1, true, MobEffects.STRENGTH)));
+                register(ctx, FRENZIED,
+                                builder(ctx, 5, 2, Enchantment.dynamicCost(5, 1), Enchantment.dynamicCost(7, 2), 1)
+                                                .withEffect(EnchantmentEffectComponents.TICK,
+                                                                new BuffByHealth(.5f, false, MobEffects.STRENGTH)));
 
         }
 }
