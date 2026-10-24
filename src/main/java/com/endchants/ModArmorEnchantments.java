@@ -3,6 +3,7 @@ package com.endchants;
 import java.util.List;
 
 import com.endchants.enchantment.effect.RepellingEffect;
+import com.endchants.enchantment.effect.armor.ChillingEffect;
 import com.endchants.enchantment.effect.armor.GravityPulseEffect;
 import com.endchants.enchantment.effect.armor.RushEffect;
 
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
+import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.TargetedConditionalEffect;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
 
@@ -51,6 +53,7 @@ public class ModArmorEnchantments {
         public static ResourceKey<Enchantment> REPELLING = genKey("repelling");
         public static ResourceKey<Enchantment> GRAVITY_PULSE = genKey("gravity_pulse");
         public static ResourceKey<Enchantment> RUSH = genKey("rush");
+        public static ResourceKey<Enchantment> CHILLING = genKey("chilling");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, REPELLING,
@@ -65,6 +68,10 @@ public class ModArmorEnchantments {
                                 builder(ctx, 6, 3, Enchantment.dynamicCost(10, 2), Enchantment.dynamicCost(12, 3), 3,
                                                 EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.VICTIM,
                                                 new RushEffect()));
+                register(ctx, CHILLING,
+                                builder(ctx, 4, 3, Enchantment.dynamicCost(8, 3), Enchantment.dynamicCost(11, 5), 5)
+                                                .withEffect(EnchantmentEffectComponents.TICK,
+                                                                new ChillingEffect(LevelBasedValue.perLevel(100f))));
 
         }
 }
