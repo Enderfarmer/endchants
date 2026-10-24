@@ -3,6 +3,7 @@ package com.endchants;
 import java.util.List;
 
 import com.endchants.enchantment.effect.RepellingEffect;
+import com.endchants.enchantment.effect.armor.BuffByHealth;
 import com.endchants.enchantment.effect.armor.BurningEffect;
 import com.endchants.enchantment.effect.armor.ChillingEffect;
 import com.endchants.enchantment.effect.armor.GravityPulseEffect;
@@ -13,6 +14,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
@@ -56,6 +58,7 @@ public class ModArmorEnchantments {
         public static ResourceKey<Enchantment> RUSH = genKey("rush");
         public static ResourceKey<Enchantment> CHILLING = genKey("chilling");
         public static ResourceKey<Enchantment> BURNING = genKey("burning");
+        public static ResourceKey<Enchantment> COWARDICE = genKey("cowardice");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, REPELLING,
@@ -78,6 +81,10 @@ public class ModArmorEnchantments {
                                 builder(ctx, 6, 3, Enchantment.dynamicCost(5, 1), Enchantment.dynamicCost(7, 2), 1)
                                                 .withEffect(EnchantmentEffectComponents.TICK,
                                                                 new BurningEffect(LevelBasedValue.perLevel(1, .5f))));
+                register(ctx, COWARDICE,
+                                builder(ctx, 5, 2, Enchantment.dynamicCost(5, 1), Enchantment.dynamicCost(7, 2), 1)
+                                                .withEffect(EnchantmentEffectComponents.TICK,
+                                                                new BuffByHealth(1, true, MobEffects.STRENGTH)));
 
         }
 }

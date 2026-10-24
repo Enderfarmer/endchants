@@ -1,6 +1,7 @@
 package com.endchants;
 
 import com.endchants.enchantment.effect.RepellingEffect;
+import com.endchants.enchantment.effect.armor.BuffByHealth;
 import com.endchants.enchantment.effect.armor.BurningEffect;
 import com.endchants.enchantment.effect.armor.ChillingEffect;
 import com.endchants.enchantment.effect.armor.GravityPulseEffect;
@@ -73,6 +74,8 @@ public class ModEnchantmentEffects {
         public static MapCodec<RushEffect> RUSH_EFFECT = register("rush_effect", RushEffect.CODEC);
         public static MapCodec<ChillingEffect> CHILLING_EFFECT = register("chilling_effect", ChillingEffect.CODEC);
         public static MapCodec<BurningEffect> BURNING_EFFECT = register("burning_effect", BurningEffect.CODEC);
+        public static MapCodec<BuffByHealth> BUFF_BY_HEALTH_EFFECT = register("buff_by_health_effect",
+                        BuffByHealth.CODEC);
 
         private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
                 return Registry.register(BuiltInRegistries.ENCHANTMENT_ENTITY_EFFECT_TYPE,
