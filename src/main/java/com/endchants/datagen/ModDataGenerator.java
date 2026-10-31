@@ -4,6 +4,7 @@ import com.endchants.ModArmorEnchantments;
 import com.endchants.ModEnchantmentEffects;
 import com.endchants.ModMeleeEnchantments;
 import com.endchants.ModRangedEnchantments;
+import com.endchants.ModToolEnchantments;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -27,5 +28,6 @@ public class ModDataGenerator implements DataGeneratorEntrypoint {
         registryBuilder.add(Registries.ENCHANTMENT, ModMeleeEnchantments::init);
         registryBuilder.add(Registries.ENCHANTMENT, ModArmorEnchantments::init);
         registryBuilder.add(Registries.ENCHANTMENT, ModRangedEnchantments::init);
+        registryBuilder.add(Registries.ENCHANTMENT, ModToolEnchantments::init);
     }
 }
