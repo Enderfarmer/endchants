@@ -38,6 +38,7 @@ public class Endchants implements ModInitializer {
 		ModEffects.registerEffects();
 		ModSubPredicates.registerSubPredicates();
 		ModEntities.init();
+		FlightTracker.register();
 		PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
 			if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
 				ItemStack tool = player.getMainHandItem();
@@ -61,9 +62,10 @@ public class Endchants implements ModInitializer {
 				}
 			}
 		});
+
 	}
 
-	private int getLevel(ResourceKey<Enchantment> enchant, ItemStack itemStack, Level level) {
+	public static int getLevel(ResourceKey<Enchantment> enchant, ItemStack itemStack, Level level) {
 		return EnchantmentHelper.getItemEnchantmentLevel(
 				level.holderLookup(Registries.ENCHANTMENT).getOrThrow(enchant),
 				itemStack);

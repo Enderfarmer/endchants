@@ -13,7 +13,9 @@ import com.endchants.enchantment.effect.armor.SnowballEffect;
 
 import net.minecraft.advancements.criterion.DamageSourcePredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
@@ -21,6 +23,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentTarget;
@@ -68,6 +71,7 @@ public class ModArmorEnchantments {
         public static ResourceKey<Enchantment> FRENZIED = genKey("frenzied");
         public static ResourceKey<Enchantment> RECYCLING = genKey("recycling");
         public static ResourceKey<Enchantment> SNOWBALL = genKey("snowball");
+        public static ResourceKey<Enchantment> LAUNCH_BOOST = genKey("launch_boost");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, REPELLING,
@@ -123,6 +127,11 @@ public class ModArmorEnchantments {
                                 builder(ctx, 4, 3, Enchantment.dynamicCost(8, 3), Enchantment.dynamicCost(11, 5), 5)
                                                 .withEffect(EnchantmentEffectComponents.TICK,
                                                                 new SnowballEffect(LevelBasedValue.perLevel(60, -20))));
+                register(ctx, LAUNCH_BOOST,
+                                Enchantment.enchantment(Enchantment.definition(
+                                                HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(Items.ELYTRA)), 6,
+                                                1, Enchantment.dynamicCost(8, 4), Enchantment.dynamicCost(10, 5), 3,
+                                                EquipmentSlotGroup.BODY)));
 
         }
 }

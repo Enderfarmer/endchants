@@ -1,0 +1,20 @@
+{
+  "anvil_cost": 3,
+  "description": {
+    "translate": "enchantment.endchants.launch_boost"
+  },
+  "max_cost": {
+    "base": 10,
+    "per_level_above_first": 5
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 8,
+    "per_level_above_first": 4
+  },
+  "slots": [
+    "body"
+  ],
+  "supported_items": "minecraft:elytra",
+  "weight": 6
+}
