@@ -7,7 +7,8 @@
         "VoidedMixin",
         "CustomAoeCloudMixin",
         "MobAccessor",
-        "WildRageMixin"
+        "WildRageMixin",
+        "NormalPlayerMixin"
     ],
     "injectors": {
         "defaultRequire": 1

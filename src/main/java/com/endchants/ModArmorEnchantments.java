@@ -72,6 +72,7 @@ public class ModArmorEnchantments {
         public static ResourceKey<Enchantment> RECYCLING = genKey("recycling");
         public static ResourceKey<Enchantment> SNOWBALL = genKey("snowball");
         public static ResourceKey<Enchantment> LAUNCH_BOOST = genKey("launch_boost");
+        public static ResourceKey<Enchantment> PUSHBACK = genKey("pushback");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, REPELLING,
@@ -132,6 +133,11 @@ public class ModArmorEnchantments {
                                                 HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(Items.ELYTRA)), 6,
                                                 1, Enchantment.dynamicCost(8, 4), Enchantment.dynamicCost(10, 5), 3,
                                                 EquipmentSlotGroup.BODY)));
+                register(ctx, PUSHBACK,
+                                Enchantment.enchantment(Enchantment.definition(
+                                                HolderSet.direct(BuiltInRegistries.ITEM.wrapAsHolder(Items.SHIELD)), 10,
+                                                1, Enchantment.dynamicCost(6, 8), Enchantment.dynamicCost(8, 8), 8,
+                                                EquipmentSlotGroup.OFFHAND)));
 
         }
 }
