@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import com.endchants.enchantment.effect.tool.GravelLiberatorEffect;
 import com.endchants.enchantment.effect.tool.HarvestWaveEffect;
+import com.endchants.enchantment.effect.tool.LuminaryEffect;
 
 public class Endchants implements ModInitializer {
 	public static final String MOD_ID = "endchants";
@@ -43,6 +44,7 @@ public class Endchants implements ModInitializer {
 
 				int gravelLiberatorLevel = getLevel(ModToolEnchantments.GRAVEL_LIBERATOR, tool, level);
 				int harvestWaveLevel = getLevel(ModToolEnchantments.HARVEST_WAVE, tool, level);
+				int luminaryLevel = getLevel(ModToolEnchantments.LUMINARY, tool, level);
 
 				if (gravelLiberatorLevel > 0) {
 					if (state.is(Blocks.GRAVEL)) {
@@ -53,6 +55,9 @@ public class Endchants implements ModInitializer {
 					if (state.is(BlockTags.CROPS)) {
 						HarvestWaveEffect.apply(serverLevel, pos, player.getLookAngle());
 					}
+				}
+				if (luminaryLevel > 0) {
+					LuminaryEffect.apply(serverLevel, pos, player);
 				}
 			}
 		});

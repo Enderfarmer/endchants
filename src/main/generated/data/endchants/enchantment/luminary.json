@@ -1,0 +1,20 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.endchants.luminary"
+  },
+  "max_cost": {
+    "base": 8,
+    "per_level_above_first": 4
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 3
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:pickaxes",
+  "weight": 6
+}
