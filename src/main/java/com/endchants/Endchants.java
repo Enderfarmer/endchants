@@ -4,15 +4,20 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.endchants.enchantment.effect.tool.GravelLiberatorEffect;
+import com.endchants.enchantment.effect.tool.HarvestWaveEffect;
 
 public class Endchants implements ModInitializer {
 	public static final String MOD_ID = "endchants";
@@ -36,19 +41,27 @@ public class Endchants implements ModInitializer {
 			if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
 				ItemStack tool = player.getMainHandItem();
 
-				int levelInt = EnchantmentHelper.getItemEnchantmentLevel(
-						level.holderLookup(Registries.ENCHANTMENT).getOrThrow(ModToolEnchantments.GRAVEL_LIBERATOR),
-						tool);
-				if (levelInt > 0) {
+				int gravelLiberatorLevel = getLevel(ModToolEnchantments.GRAVEL_LIBERATOR, tool, level);
+				int harvestWaveLevel = getLevel(ModToolEnchantments.HARVEST_WAVE, tool, level);
 
+				if (gravelLiberatorLevel > 0) {
 					if (state.is(Blocks.GRAVEL)) {
-						GravelLiberatorEffect.INSTANCE.apply(serverLevel, levelInt, pos);
+						GravelLiberatorEffect.INSTANCE.apply(serverLevel, gravelLiberatorLevel, pos);
 					}
 				}
-			} else {
-				System.out.println(level.isClientSide());
+				if (harvestWaveLevel > 0) {
+					if (state.is(BlockTags.CROPS)) {
+						HarvestWaveEffect.apply(serverLevel, pos, player.getLookAngle());
+					}
+				}
 			}
 		});
+	}
+
+	private int getLevel(ResourceKey<Enchantment> enchant, ItemStack itemStack, Level level) {
+		return EnchantmentHelper.getItemEnchantmentLevel(
+				level.holderLookup(Registries.ENCHANTMENT).getOrThrow(enchant),
+				itemStack);
 	}
 
 	public static Identifier id(String path) {

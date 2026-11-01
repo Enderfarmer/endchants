@@ -3,6 +3,7 @@ package com.endchants;
 import com.endchants.entity.CustomAoeCloudEntity;
 import com.endchants.entity.EntityDims;
 import com.endchants.entity.ExplosiveArrow;
+import com.endchants.entity.HarvestWaveEntity;
 import com.endchants.entity.ShockwaveEntity;
 import com.endchants.entity.ShortArrow;
 import com.endchants.entity.WhirlwindEntity;
@@ -19,6 +20,8 @@ import net.minecraft.world.entity.MobCategory;
 public class ModEntities {
         public static final EntityType<ShockwaveEntity> SHOCKWAVE = register("shockwave",
                         new EntityDims(1, .5f), ShockwaveEntity::new);
+        public static final EntityType<HarvestWaveEntity> HARVEST_WAVE = register("harvest_wave",
+                        new EntityDims(2, .5f), HarvestWaveEntity::new);
         public static final EntityType<CustomAoeCloudEntity> CUSTOM_AOE_CLOUD = register("custom_aoe_cloud",
                         EntityType.Builder.of(CustomAoeCloudEntity::new, MobCategory.MISC).noLootTable().fireImmune()
                                         .sized(6.0F, 0.5F).clientTrackingRange(10).updateInterval(Integer.MAX_VALUE));

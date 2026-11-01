@@ -13,6 +13,8 @@ public class EndchantsClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		EntityRenderers.register(ModEntities.SHOCKWAVE,
 				context -> new GeoEntityRenderer<>(context, ModEntities.SHOCKWAVE));
+		EntityRenderers.register(ModEntities.HARVEST_WAVE,
+				context -> new GeoEntityRenderer<>(context, ModEntities.HARVEST_WAVE));
 		EntityRenderers.register(ModEntities.WHIRLWIND,
 				context -> new GeoEntityRenderer<>(context, ModEntities.WHIRLWIND));
 		EntityRenderers.register(ModEntities.CUSTOM_AOE_CLOUD, NoopRenderer::new);
