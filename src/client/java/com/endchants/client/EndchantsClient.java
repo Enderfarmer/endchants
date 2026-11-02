@@ -20,5 +20,6 @@ public class EndchantsClient implements ClientModInitializer {
 		EntityRenderers.register(ModEntities.CUSTOM_AOE_CLOUD, NoopRenderer::new);
 		EntityRenderers.register(ModEntities.SHORT_ARROW, CustomArrowRenderer::new);
 		EntityRenderers.register(ModEntities.EXPLOSIVE_ARROW, CustomArrowRenderer::new);
+		EntityRenderers.register(ModEntities.DRILL, context -> new GeoEntityRenderer<>(context, ModEntities.DRILL));
 	}
 }

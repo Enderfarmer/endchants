@@ -7,15 +7,18 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.endchants.enchantment.effect.tool.DrillingEffect;
 import com.endchants.enchantment.effect.tool.GravelLiberatorEffect;
 import com.endchants.enchantment.effect.tool.HarvestWaveEffect;
 import com.endchants.enchantment.effect.tool.LuminaryEffect;
@@ -46,6 +49,7 @@ public class Endchants implements ModInitializer {
 				int gravelLiberatorLevel = getLevel(ModToolEnchantments.GRAVEL_LIBERATOR, tool, level);
 				int harvestWaveLevel = getLevel(ModToolEnchantments.HARVEST_WAVE, tool, level);
 				int luminaryLevel = getLevel(ModToolEnchantments.LUMINARY, tool, level);
+				int drillingLevel = getLevel(ModToolEnchantments.DRILLING, tool, level);
 
 				if (gravelLiberatorLevel > 0) {
 					if (state.is(Blocks.GRAVEL)) {
@@ -59,6 +63,11 @@ public class Endchants implements ModInitializer {
 				}
 				if (luminaryLevel > 0) {
 					LuminaryEffect.apply(serverLevel, pos, player);
+				}
+				if (drillingLevel > 0 && player.isCrouching()) {
+					player.getMainHandItem().hurtAndBreak(drillingLevel * 50, player, InteractionHand.MAIN_HAND);
+					Vec3 posVec3 = new Vec3(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+					DrillingEffect.apply(serverLevel, posVec3, drillingLevel);
 				}
 			}
 		});

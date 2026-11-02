@@ -47,6 +47,7 @@ public class ModToolEnchantments {
         public static final ResourceKey<Enchantment> GRAVEL_LIBERATOR = genKey("gravel_liberator");
         public static final ResourceKey<Enchantment> HARVEST_WAVE = genKey("harvest_wave");
         public static final ResourceKey<Enchantment> LUMINARY = genKey("luminary");
+        public static final ResourceKey<Enchantment> DRILLING = genKey("drilling");
 
         public static void init(BootstrapContext<Enchantment> ctx) {
                 register(ctx, GRAVEL_LIBERATOR,
@@ -61,6 +62,10 @@ public class ModToolEnchantments {
                                 builderForPick(ctx, 6, 1, Enchantment.dynamicCost(5, 3),
                                                 Enchantment.dynamicCost(8, 4),
                                                 2));
+                register(ctx, DRILLING,
+                                builderForPick(ctx, 6, 3, Enchantment.dynamicCost(10, 3),
+                                                Enchantment.dynamicCost(15, 4),
+                                                4));
 
         }
 }
