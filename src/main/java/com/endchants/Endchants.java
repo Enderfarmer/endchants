@@ -42,6 +42,7 @@ public class Endchants implements ModInitializer {
 		ModSubPredicates.registerSubPredicates();
 		ModEntities.init();
 		FlightTracker.register();
+		ModSoundEvents.init();
 		PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
 			if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
 				ItemStack tool = player.getMainHandItem();

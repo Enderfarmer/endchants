@@ -11,22 +11,22 @@ import com.endchants.enchantment.effect.melee.ExplodingEffect;
 import com.endchants.enchantment.effect.melee.FleshEaterEffect;
 import com.endchants.enchantment.effect.melee.FreezingEffect;
 import com.endchants.enchantment.effect.melee.GravityEffect;
+import com.endchants.enchantment.effect.melee.GuardingStrikeSoundEffect;
 import com.endchants.enchantment.effect.melee.LeechingEffect;
 import com.endchants.enchantment.effect.melee.RadianceEffect;
 import com.endchants.enchantment.effect.melee.ShockwaveEffect;
 import com.endchants.enchantment.effect.melee.StunningEffect;
 import com.endchants.enchantment.effect.melee.SwirlingEffect;
 import com.endchants.enchantment.effect.melee.VoidedEffect;
+import com.endchants.enchantment.subpredicate.CriticalHitPredicate;
 import com.endchants.enchantment.subpredicate.IsBackstabbedPredicate;
 import com.endchants.enchantment.subpredicate.IsHurtPredicate;
 import com.endchants.enchantment.subpredicate.IsIllagerPredicate;
 
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffects;
@@ -131,10 +131,11 @@ public class ModMeleeEnchantments {
                                 builder(ctx, 6, 3, Enchantment.dynamicCost(8, 8), Enchantment.dynamicCost(28, 8),
                                                 8, new BuffOnKillEffect(LevelBasedValue.perLevel(2, 0),
                                                                 LevelBasedValue.perLevel(2),
-                                                                BuiltInRegistries.MOB_EFFECT.get(Identifier
-                                                                                .withDefaultNamespace("resistance"))
-                                                                                .get(),
-                                                                .2f)));
+                                                                MobEffects.RESISTANCE,
+                                                                .2f))
+                                                .withEffect(EnchantmentEffectComponents.POST_ATTACK,
+                                                                EnchantmentTarget.ATTACKER, EnchantmentTarget.VICTIM,
+                                                                new GuardingStrikeSoundEffect()));
                 register(ctx, RAMPAGING,
                                 builder(ctx, 6, 3, Enchantment.dynamicCost(8, 8), Enchantment.dynamicCost(28, 8),
                                                 8, new BuffOnKillEffect(LevelBasedValue.perLevel(0, 0),
@@ -162,7 +163,10 @@ public class ModMeleeEnchantments {
                                                                                 new IsBackstabbedPredicate()))));
                 register(ctx, CRITICAL_HIT,
                                 builder(ctx, 5, 3, Enchantment.dynamicCost(8, 6), Enchantment.dynamicCost(10, 6),
-                                                4, EnchantmentEffectComponents.DAMAGE, new CriticalHitEffect()));
+                                                4, EnchantmentEffectComponents.DAMAGE, new CriticalHitEffect(),
+                                                LootItemEntityPropertyCondition.hasProperties(EntityTarget.THIS,
+                                                                EntityPredicate.Builder.entity().subPredicate(
+                                                                                new CriticalHitPredicate()))));
                 register(ctx, ECHO, builder(ctx, 4, 3, Enchantment.dynamicCost(10, 8),
                                 Enchantment.dynamicCost(13, 8), 5, new EchoEffect()));
                 register(ctx, VOID_STRIKE, builder(ctx, 4, 3, Enchantment.dynamicCost(10, 8),

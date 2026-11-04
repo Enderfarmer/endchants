@@ -7,6 +7,8 @@ import com.endchants.entity.ExplosiveArrow;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,6 +37,7 @@ public record FuseShotEffect(LevelBasedValue everyNthShot) implements EntityEffe
             arrow.setDeltaMovement(arrowVel);
 
             serverLevel.addFreshEntity(arrow);
+            serverLevel.playSound(null, owner.blockPosition(), SoundEvents.TNT_PRIMED, SoundSource.PLAYERS);
         }
     }
 

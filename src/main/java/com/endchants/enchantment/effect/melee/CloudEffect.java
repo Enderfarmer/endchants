@@ -1,6 +1,7 @@
 package com.endchants.enchantment.effect.melee;
 
 import com.endchants.ModEntities;
+import com.endchants.ModSoundEvents;
 import com.endchants.enchantment.effect.EntityEffectBase;
 import com.endchants.entity.CustomAoeCloudEntity;
 import com.mojang.serialization.Codec;
@@ -9,8 +10,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.alchemy.PotionContents;
@@ -43,6 +46,11 @@ public record CloudEffect(Holder<MobEffect> effect, float radius, float chance, 
                         cloud.setPos(ownerPosition);
                         cloud.setOwner(owner);
                         serverLevel.addFreshEntity(cloud);
+                        if (effect.equals(MobEffects.POISON)) {
+                                serverLevel.playSound(null, owner.blockPosition(),
+                                                ModSoundEvents.POISON_CLOUD,
+                                                SoundSource.PLAYERS);
+                        }
                 }
         }
 

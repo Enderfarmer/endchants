@@ -1,9 +1,11 @@
 package com.endchants.enchantment.effect.melee;
 
+import com.endchants.ModSoundEvents;
 import com.endchants.accessor.LivingEntityMixinInterface;
 import com.endchants.enchantment.effect.EntityEffectBase;
 import com.mojang.serialization.MapCodec;
 
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
 import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
@@ -16,6 +18,7 @@ public record VoidedEffect(LevelBasedValue maxCoef) implements EntityEffectBase 
     @Override
     public void affectVictim(int i, Vec3 ownerPosition, LivingEntity victim) {
         ((LivingEntityMixinInterface) victim).endchants$incrementVoidedEff((int) maxCoef.calculate(i));
+        victim.level().playSound(null, victim.blockPosition(), ModSoundEvents.VOIDED, SoundSource.PLAYERS);
 
     }
 

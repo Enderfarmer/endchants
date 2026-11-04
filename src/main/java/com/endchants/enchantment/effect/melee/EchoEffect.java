@@ -23,7 +23,6 @@ public record EchoEffect() implements EntityEffectBase {
             var playerMixed = (PlayerMixinInterface) plair;
 
             if (playerMixed.endchants$getEchoCd() == 0) {
-                System.out.println("Cooled down!");
                 playerMixed.endchants$setEchoCd(6 - i);
                 plair.addEffect(new MobEffectInstance(ModEffects.RAMPAGING, 10, 100, false, false));
                 serverLevel.getServer().execute(() -> {

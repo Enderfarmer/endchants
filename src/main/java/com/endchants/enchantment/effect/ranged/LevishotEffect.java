@@ -1,10 +1,12 @@
 package com.endchants.enchantment.effect.ranged;
 
+import com.endchants.ModSoundEvents;
 import com.endchants.enchantment.effect.EntityEffectBase;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -22,8 +24,12 @@ public record LevishotEffect(LevelBasedValue chance, LevelBasedValue duration) i
 
     @Override
     public void apply(ServerLevel serverLevel, int i, EnchantedItemInUse enchantedItemInUse, Entity entity, Vec3 vec3) {
-        if (Math.random() < chance.calculate(i) && entity instanceof Arrow arrow)
+        if (Math.random() < chance.calculate(i) && entity instanceof Arrow arrow) {
+            serverLevel.playSound(null, arrow.getOwner().blockPosition(), ModSoundEvents.LEVISHOT,
+                    SoundSource.PLAYERS);
             arrow.addEffect(new MobEffectInstance(MobEffects.LEVITATION, (int) duration.calculate(i) * 20, 2));
+        }
+
     }
 
     @Override

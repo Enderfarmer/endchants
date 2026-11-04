@@ -22,7 +22,7 @@ public class NormalPlayerMixin {
     public void endchants$blockDetection(ServerLevel serverLevel, LivingEntity livingEntity, Operation<Void> op) {
         ServerPlayer player = (ServerPlayer) (Object) this;
         ItemStack itemStack = player.getItemBlockingWith();
-        if (Endchants.getLevel(ModArmorEnchantments.PUSHBACK, itemStack, serverLevel) > 0) {
+        if (itemStack != null && Endchants.getLevel(ModArmorEnchantments.PUSHBACK, itemStack, serverLevel) > 0) {
             livingEntity.addEffect(new MobEffectInstance(ModEffects.STUNNED, 30, 0));
             Vec3 ownerPosition = player.position();
             Vec3 direction = ownerPosition.subtract(livingEntity.position()).normalize().reverse();

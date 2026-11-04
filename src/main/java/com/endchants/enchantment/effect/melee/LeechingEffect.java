@@ -1,9 +1,11 @@
 package com.endchants.enchantment.effect.melee;
 
+import com.endchants.ModSoundEvents;
 import com.endchants.enchantment.effect.EntityEffectBase;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantedItemInUse;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
@@ -17,9 +19,11 @@ public record LeechingEffect(LevelBasedValue partOfMaxHealth) implements EntityE
     @Override
     public void applyIfKilled(ServerLevel serverLevel, int i, EnchantedItemInUse enchantedItemInUse,
             LivingEntity victim, Vec3 vec3) {
+        LivingEntity owner = enchantedItemInUse.owner();
         float maxHealth = victim.getMaxHealth();
         float healAmount = maxHealth * partOfMaxHealth.calculate(i);
         enchantedItemInUse.owner().heal(healAmount);
+        serverLevel.playSound(null, owner.blockPosition(), ModSoundEvents.LEECHING, SoundSource.PLAYERS);
     }
 
     @Override

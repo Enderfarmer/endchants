@@ -1,10 +1,12 @@
 package com.endchants.enchantment.effect.melee;
 
+import com.endchants.ModSoundEvents;
 import com.endchants.enchantment.effect.EntityEffectBase;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
@@ -19,6 +21,7 @@ public record FreezingEffect(LevelBasedValue amount) implements EntityEffectBase
         victim.setTicksFrozen(victim.getTicksFrozen() + (int) amount.calculate(i));
         victim.addEffect(new MobEffectInstance(
                 BuiltInRegistries.MOB_EFFECT.get(Identifier.withDefaultNamespace("slowness")).get(), 3, 0));
+        victim.level().playSound(null, victim.blockPosition(), ModSoundEvents.FREEZING, SoundSource.PLAYERS);
     }
 
     @Override

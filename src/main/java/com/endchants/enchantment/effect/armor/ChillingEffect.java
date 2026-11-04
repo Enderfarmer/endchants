@@ -2,11 +2,13 @@ package com.endchants.enchantment.effect.armor;
 
 import java.util.List;
 
+import com.endchants.ModSoundEvents;
 import com.endchants.enchantment.effect.EntityEffectBase;
 import com.endchants.enchantment.effect.melee.FreezingEffect;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -32,6 +34,8 @@ public record ChillingEffect(LevelBasedValue amount) implements EntityEffectBase
                     enchantedItemInUse.owner(), new AABB(x - 4, y - 4, z - 4, x + 4, y + 4, z + 4));
 
             entities.forEach(enity -> effect.affectVictim(i, vec3, enity));
+            serverLevel.playSound(enchantedItemInUse.owner(), enchantedItemInUse.owner().blockPosition(),
+                    ModSoundEvents.FREEZING, SoundSource.PLAYERS);
         }
     }
 

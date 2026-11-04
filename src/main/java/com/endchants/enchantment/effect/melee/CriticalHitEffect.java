@@ -10,10 +10,7 @@ public record CriticalHitEffect() implements EnchantmentValueEffect {
 
     @Override
     public float process(int i, RandomSource randomSource, float f) {
-        if (randomSource.nextDouble() < (i * 0.05 + 0.1)) {
-            return f * 3;
-        }
-        return f;
+        return f * 3;
     }
 
     @Override

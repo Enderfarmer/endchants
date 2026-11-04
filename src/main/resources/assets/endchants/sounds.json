@@ -1,0 +1,100 @@
+{
+    "backstabbing": {
+        "subtitle": "enchantment.endchants.backstabbing",
+        "sounds": [
+            "endchants:backstabbing/sound01_001",
+            "endchants:backstabbing/sound01_002",
+            "endchants:backstabbing/sound01_003",
+            "endchants:backstabbing/sound02_001",
+            "endchants:backstabbing/sound02_002",
+            "endchants:backstabbing/sound02_003",
+            "endchants:backstabbing/sound03_001",
+            "endchants:backstabbing/sound03_002",
+            "endchants:backstabbing/sound03_003"
+        ]
+    },
+    "critical_hit": {
+        "subtitle": "enchantment.endchants.critical_hit",
+        "sounds": [
+            "endchants:critical_hit/sound001",
+            "endchants:critical_hit/sound002"
+        ]
+    },
+    "freezing": {
+        "subtitle": "enchantment.endchants.freezing",
+        "sounds": [
+            "endchants:freezing/sound001",
+            "endchants:freezing/sound002",
+            "endchants:freezing/sound003"
+        ]
+    },
+    "guarding_strike_1": {
+        "subtitle": "enchantment.endchants.guarding_strike",
+        "sounds": [
+            "endchants:guarding_strike/sound01_001",
+            "endchants:guarding_strike/sound01_002",
+            "endchants:guarding_strike/sound01_003"
+        ]
+    },
+    "guarding_strike_2": {
+        "subtitle": "enchantment.endchants.guarding_strike",
+        "sounds": [
+            "endchants:guarding_strike/sound02_001",
+            "endchants:guarding_strike/sound02_002",
+            "endchants:guarding_strike/sound02_003"
+        ]
+    },
+    "guarding_strike_3": {
+        "subtitle": "enchantment.endchants.guarding_strike",
+        "sounds": [
+            "endchants:guarding_strike/sound03_001",
+            "endchants:guarding_strike/sound03_002",
+            "endchants:guarding_strike/sound03_003"
+        ]
+    },
+    "leeching": {
+        "subtitle": "enchantment.endchants.leeching",
+        "sounds": ["endchants:leeching/sound001", "endchants:leeching/sound002"]
+    },
+    "poison_cloud": {
+        "subtitle": "enchantment.endchants.poison_cloud",
+        "sounds": [
+            "endchants:poison_cloud/sound001",
+            "endchants:poison_cloud/sound002",
+            "endchants:poison_cloud/sound003",
+            "endchants:poison_cloud/sound004"
+        ]
+    },
+    "stunning": {
+        "subtitle": "enchantment.endchants.stunning",
+        "sounds": ["endchants:stunning/sound001", "endchants:stunning/sound002"]
+    },
+    "voided": {
+        "subtitle": "enchantment.endchants.voided",
+        "sounds": ["endchants:voided/sound001", "endchants:voided/sound002"]
+    },
+    "levishot": {
+        "subtitle": "enchantment.endchants.levishot",
+        "sounds": ["endchants:levitation"]
+    },
+    "wild_rage": {
+        "subtitle": "enchantment.endchants.wild_rage",
+        "sounds": ["endchants:wild_rage"]
+    },
+    "rush_1": {
+        "subtitle": "enchantment.endchants.rush",
+        "sounds": ["endchants:rush/sound001"]
+    },
+    "rush_2": {
+        "subtitle": "enchantment.endchants.rush",
+        "sounds": ["endchants:rush/sound002"]
+    },
+    "rush_3": {
+        "subtitle": "enchantment.endchants.rush",
+        "sounds": ["endchants:rush/sound003"]
+    },
+    "repelling": {
+        "subtitle": "enchantment.endchants.repelling",
+        "sounds": ["endchants:wilhelm_scream"]
+    }
+}

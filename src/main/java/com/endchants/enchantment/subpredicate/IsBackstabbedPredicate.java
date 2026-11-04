@@ -2,10 +2,12 @@ package com.endchants.enchantment.subpredicate;
 
 import org.jspecify.annotations.Nullable;
 
+import com.endchants.ModSoundEvents;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.advancements.criterion.EntitySubPredicate;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -36,7 +38,7 @@ public class IsBackstabbedPredicate implements EntitySubPredicate {
             yaw = Mth.wrapDegrees(yaw);
             int yawDiff = (int) entity.getYHeadRot() - (int) yaw;
             if (yawDiff > 40 || yawDiff < -40) {
-
+                arg1.playSound(null, entity.blockPosition(), ModSoundEvents.BACKSTABBING, SoundSource.PLAYERS);
                 return true;
             }
 

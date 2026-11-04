@@ -4,6 +4,8 @@ import com.endchants.enchantment.effect.EntityEffectBase;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.LevelBasedValue;
@@ -22,6 +24,8 @@ public record FleshEaterEffect(LevelBasedValue amount) implements EntityEffectBa
                 int addedSaturation = Math.round(amount.calculate(i));
                 player.getFoodData()
                         .setFoodLevel(Math.min(player.getFoodData().getFoodLevel() + addedSaturation, 20));
+                player.level().playSound(null, player.blockPosition(), SoundEvents.PLAYER_BURP, SoundSource.PLAYERS);
+
             }
 
         } else if (owner instanceof LivingEntity livingEntity) {
