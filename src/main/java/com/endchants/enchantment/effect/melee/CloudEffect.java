@@ -1,6 +1,7 @@
 package com.endchants.enchantment.effect.melee;
 
 import com.endchants.ModEntities;
+import com.endchants.ModParticles;
 import com.endchants.ModSoundEvents;
 import com.endchants.enchantment.effect.EntityEffectBase;
 import com.endchants.entity.CustomAoeCloudEntity;
@@ -50,6 +51,7 @@ public record CloudEffect(Holder<MobEffect> effect, float radius, float chance, 
                                 serverLevel.playSound(null, owner.blockPosition(),
                                                 ModSoundEvents.POISON_CLOUD,
                                                 SoundSource.PLAYERS);
+                                cloud.setCustomParticle(ModParticles.POISON_CLOUD);
                         }
                 }
         }

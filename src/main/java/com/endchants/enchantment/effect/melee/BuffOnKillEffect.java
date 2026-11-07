@@ -1,5 +1,7 @@
 package com.endchants.enchantment.effect.melee;
 
+import com.endchants.ModEffects;
+import com.endchants.ModSoundEvents;
 import com.endchants.enchantment.effect.EntityEffectBase;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -7,6 +9,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,6 +35,10 @@ public record BuffOnKillEffect(LevelBasedValue amplifier, LevelBasedValue durati
                                         .addEffect(new MobEffectInstance(effect,
                                                         Math.round(duration.calculate(i) * 20), Math.round(
                                                                         amplifier.calculate(i))));
+                        if (effect.equals(ModEffects.RAMPAGING)) {
+                                owner.level().playSound(null, owner.blockPosition(), ModSoundEvents.RAMPAGING,
+                                                SoundSource.PLAYERS);
+                        }
                 }
         }
 

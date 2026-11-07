@@ -96,5 +96,9 @@
     "repelling": {
         "subtitle": "enchantment.endchants.repelling",
         "sounds": ["endchants:wilhelm_scream"]
+    },
+    "rampaging": {
+        "subtitle": "enchantment.endchants.rampaging",
+        "sounds": ["endchants:rampaging"]
     }
 }

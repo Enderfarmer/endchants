@@ -28,6 +28,7 @@ public class ModSoundEvents {
     public static final SoundEvent RUSH_2 = register("rush_2");
     public static final SoundEvent RUSH_3 = register("rush_3");
     public static final SoundEvent REPELLING = register("repelling");
+    public static final SoundEvent RAMPAGING = register("rampaging");
 
     public static void init() {
         // This method is intentionally left empty. It is used to trigger the static

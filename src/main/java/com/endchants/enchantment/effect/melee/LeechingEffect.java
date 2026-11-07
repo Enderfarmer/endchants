@@ -20,10 +20,13 @@ public record LeechingEffect(LevelBasedValue partOfMaxHealth) implements EntityE
     public void applyIfKilled(ServerLevel serverLevel, int i, EnchantedItemInUse enchantedItemInUse,
             LivingEntity victim, Vec3 vec3) {
         LivingEntity owner = enchantedItemInUse.owner();
+        if (owner.getHealth() < owner.getMaxHealth()) {
+            serverLevel.playSound(null, owner.blockPosition(), ModSoundEvents.LEECHING, SoundSource.PLAYERS);
+        }
         float maxHealth = victim.getMaxHealth();
         float healAmount = maxHealth * partOfMaxHealth.calculate(i);
         enchantedItemInUse.owner().heal(healAmount);
-        serverLevel.playSound(null, owner.blockPosition(), ModSoundEvents.LEECHING, SoundSource.PLAYERS);
+
     }
 
     @Override
